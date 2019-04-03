@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'crazyflie'.
  *
- * Model version                  : 1.169
+ * Model version                  : 1.172
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Tue Apr  2 14:12:18 2019
+ * C/C++ source code generated on : Wed Apr  3 17:42:56 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -21,12 +21,19 @@
 
 #ifndef RTW_HEADER_crazyflie_h_
 #define RTW_HEADER_crazyflie_h_
+#include <math.h>
 #ifndef crazyflie_COMMON_INCLUDES_
 # define crazyflie_COMMON_INCLUDES_
 #include "rtwtypes.h"
 #endif                                 /* crazyflie_COMMON_INCLUDES_ */
 
 /* Macros for accessing real-time model data structure */
+
+/* Block signals and states (default storage) for system '<Root>' */
+typedef struct {
+  real_T Memory_PreviousInput;         /* '<Root>/Memory' */
+  real_T Memory1_PreviousInput;        /* '<Root>/Memory1' */
+} DW;
 
 /* External inputs (root inport signals with default storage) */
 typedef struct {
@@ -56,6 +63,9 @@ typedef struct {
   real_T Log6;                         /* '<Root>/Log6' */
 } ExtY;
 
+/* Block signals and states (default storage) */
+extern DW rtDW;
+
 /* External inputs (root inport signals with default storage) */
 extern ExtU rtU;
 
@@ -76,10 +86,6 @@ extern void crazyflie_terminate(void);
  * Block '<Root>/ToDouble3' : Eliminate redundant data type conversion
  * Block '<Root>/ToDouble4' : Eliminate redundant data type conversion
  * Block '<Root>/ToDouble5' : Eliminate redundant data type conversion
- * Block '<Root>/ToUint16' : Eliminate redundant data type conversion
- * Block '<Root>/ToUint16_1' : Eliminate redundant data type conversion
- * Block '<Root>/ToUint16_2' : Eliminate redundant data type conversion
- * Block '<Root>/ToUint16_3' : Eliminate redundant data type conversion
  */
 
 /*-
@@ -97,6 +103,8 @@ extern void crazyflie_terminate(void);
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'crazyflie'
+ * '<S1>'   : 'crazyflie/MATLAB Function'
+ * '<S2>'   : 'crazyflie/Subsystem'
  */
 #endif                                 /* RTW_HEADER_crazyflie_h_ */
 
