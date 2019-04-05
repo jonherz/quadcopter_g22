@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'crazyflie'.
  *
- * Model version                  : 1.172
+ * Model version                  : 1.173
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Wed Apr  3 17:42:56 2019
+ * C/C++ source code generated on : Fri Apr  5 15:19:05 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -31,6 +31,8 @@
 
 /* Block signals and states (default storage) for system '<Root>' */
 typedef struct {
+  real_T DiscreteTimeIntegrator_DSTATE;/* '<Root>/Discrete-Time Integrator' */
+  real_T DiscreteTimeIntegrator1_DSTATE;/* '<Root>/Discrete-Time Integrator1' */
   real_T Memory_PreviousInput;         /* '<Root>/Memory' */
   real_T Memory1_PreviousInput;        /* '<Root>/Memory1' */
 } DW;

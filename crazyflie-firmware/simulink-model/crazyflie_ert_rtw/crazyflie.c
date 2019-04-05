@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'crazyflie'.
  *
- * Model version                  : 1.172
+ * Model version                  : 1.173
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Wed Apr  3 17:42:56 2019
+ * C/C++ source code generated on : Fri Apr  5 15:19:05 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -162,11 +162,41 @@ void crazyflie_step(void)
   /* Outport: '<Root>/Log2' */
   rtY.Log2 = fy;
 
+  /* Outport: '<Root>/Log3' incorporates:
+   *  Inport: '<Root>/Acc_x'
+   */
+  rtY.Log3 = rtU.Acc_x;
+
+  /* Outport: '<Root>/Log4' incorporates:
+   *  Inport: '<Root>/Acc_y'
+   */
+  rtY.Log4 = rtU.Acc_y;
+
+  /* Outport: '<Root>/Log5' incorporates:
+   *  DiscreteIntegrator: '<Root>/Discrete-Time Integrator'
+   */
+  rtY.Log5 = rtDW.DiscreteTimeIntegrator_DSTATE;
+
+  /* Outport: '<Root>/Log6' incorporates:
+   *  DiscreteIntegrator: '<Root>/Discrete-Time Integrator1'
+   */
+  rtY.Log6 = rtDW.DiscreteTimeIntegrator1_DSTATE;
+
   /* Update for Memory: '<Root>/Memory' */
   rtDW.Memory_PreviousInput = rtb_theta;
 
   /* Update for Memory: '<Root>/Memory1' */
   rtDW.Memory1_PreviousInput = fy;
+
+  /* Update for DiscreteIntegrator: '<Root>/Discrete-Time Integrator' incorporates:
+   *  Inport: '<Root>/Gyro_y'
+   */
+  rtDW.DiscreteTimeIntegrator_DSTATE += 0.01 * rtU.Gyro_y;
+
+  /* Update for DiscreteIntegrator: '<Root>/Discrete-Time Integrator1' incorporates:
+   *  Inport: '<Root>/Gyro_x'
+   */
+  rtDW.DiscreteTimeIntegrator1_DSTATE += 0.01 * rtU.Gyro_x;
 }
 
 /* Model initialize function */

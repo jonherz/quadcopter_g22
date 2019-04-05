@@ -27,6 +27,10 @@ function RTW_rtwnameSIDMap() {
 	this.sidHashMap["crazyflie:9"] = {rtwname: "<Root>/Gyro_y"};
 	this.rtwnameHashMap["<Root>/Gyro_z"] = {sid: "crazyflie:10"};
 	this.sidHashMap["crazyflie:10"] = {rtwname: "<Root>/Gyro_z"};
+	this.rtwnameHashMap["<Root>/Discrete-Time Integrator"] = {sid: "crazyflie:284"};
+	this.sidHashMap["crazyflie:284"] = {rtwname: "<Root>/Discrete-Time Integrator"};
+	this.rtwnameHashMap["<Root>/Discrete-Time Integrator1"] = {sid: "crazyflie:285"};
+	this.sidHashMap["crazyflie:285"] = {rtwname: "<Root>/Discrete-Time Integrator1"};
 	this.rtwnameHashMap["<Root>/MATLAB Function"] = {sid: "crazyflie:248"};
 	this.sidHashMap["crazyflie:248"] = {rtwname: "<Root>/MATLAB Function"};
 	this.rtwnameHashMap["<Root>/Memory"] = {sid: "crazyflie:249"};

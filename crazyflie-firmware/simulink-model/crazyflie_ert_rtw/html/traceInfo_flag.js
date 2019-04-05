@@ -39,6 +39,10 @@ function TraceInfoFlag() {
     this.traceFlag["crazyflie.c:141c6"]=1;
     this.traceFlag["crazyflie.c:144c10"]=1;
     this.traceFlag["crazyflie.c:145c12"]=1;
+    this.traceFlag["crazyflie.c:194c38"]=1;
+    this.traceFlag["crazyflie.c:194c46"]=1;
+    this.traceFlag["crazyflie.c:199c39"]=1;
+    this.traceFlag["crazyflie.c:199c47"]=1;
 }
 top.TraceInfoFlag.instance = new TraceInfoFlag();
 function TraceInfoLineFlag() {
@@ -80,7 +84,13 @@ function TraceInfoLineFlag() {
     this.lineTraceFlag["crazyflie.c:154"]=1;
     this.lineTraceFlag["crazyflie.c:160"]=1;
     this.lineTraceFlag["crazyflie.c:163"]=1;
-    this.lineTraceFlag["crazyflie.c:166"]=1;
-    this.lineTraceFlag["crazyflie.c:169"]=1;
+    this.lineTraceFlag["crazyflie.c:168"]=1;
+    this.lineTraceFlag["crazyflie.c:173"]=1;
+    this.lineTraceFlag["crazyflie.c:178"]=1;
+    this.lineTraceFlag["crazyflie.c:183"]=1;
+    this.lineTraceFlag["crazyflie.c:186"]=1;
+    this.lineTraceFlag["crazyflie.c:189"]=1;
+    this.lineTraceFlag["crazyflie.c:194"]=1;
+    this.lineTraceFlag["crazyflie.c:199"]=1;
 }
 top.TraceInfoLineFlag.instance = new TraceInfoLineFlag();

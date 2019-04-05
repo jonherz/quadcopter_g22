@@ -29,11 +29,11 @@
 <tr name="9" id="9">
 <td><a id="l9" class='ln'>9</a></td><td><span class="ct"> *</span></td></tr>
 <tr name="10" id="10">
-<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * Model version                  : 1.172</span></td></tr>
+<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * Model version                  : 1.173</span></td></tr>
 <tr name="11" id="11">
 <td><a id="l11" class='ln'>11</a></td><td><span class="ct"> * Simulink Coder version         : 9.0 (R2018b) 24-May-2018</span></td></tr>
 <tr name="12" id="12">
-<td><a id="l12" class='ln'>12</a></td><td><span class="ct"> * C/C++ source code generated on : Wed Apr  3 17:42:56 2019</span></td></tr>
+<td><a id="l12" class='ln'>12</a></td><td><span class="ct"> * C/C++ source code generated on : Fri Apr  5 15:19:05 2019</span></td></tr>
 <tr name="13" id="13">
 <td><a id="l13" class='ln'>13</a></td><td><span class="ct"> *</span></td></tr>
 <tr name="14" id="14">
@@ -339,55 +339,115 @@
 <tr name="164" id="164">
 <td><a id="l164" class='ln'>164</a></td><td></td></tr>
 <tr name="165" id="165">
-<td><a id="l165" class='ln'>165</a></td><td>  <span class="ct">/* Update for Memory: '<a class="ct blk" blk_line="165">&lt;Root&gt;/Memory</a>' */</span></td></tr>
+<td><a id="l165" class='ln'>165</a></td><td>  <span class="ct">/* Outport: '<a class="ct blk" blk_line="165">&lt;Root&gt;/Log3</a>' incorporates:</span></td></tr>
 <tr name="166" id="166">
-<td><a id="l166" class='ln'>166</a></td><td>  <a id="166c3" class="tk">rtDW</a>.<a id="166c8" class="tk">Memory_PreviousInput</a> = <a id="166c31" class="tk">rtb_theta</a>;</td></tr>
+<td><a id="l166" class='ln'>166</a></td><td><span class="ct">   *  Inport: '<a class="ct blk" blk_line="166">&lt;Root&gt;/Acc_x</a>'</span></td></tr>
 <tr name="167" id="167">
-<td><a id="l167" class='ln'>167</a></td><td></td></tr>
+<td><a id="l167" class='ln'>167</a></td><td><span class="ct">   */</span></td></tr>
 <tr name="168" id="168">
-<td><a id="l168" class='ln'>168</a></td><td>  <span class="ct">/* Update for Memory: '<a class="ct blk" blk_line="168">&lt;Root&gt;/Memory1</a>' */</span></td></tr>
+<td><a id="l168" class='ln'>168</a></td><td>  <a id="168c3" class="tk">rtY</a>.<a id="168c7" class="tk">Log3</a> = <a id="168c14" class="tk">rtU</a>.<a id="168c18" class="tk">Acc_x</a>;</td></tr>
 <tr name="169" id="169">
-<td><a id="l169" class='ln'>169</a></td><td>  <a id="169c3" class="tk">rtDW</a>.<a id="169c8" class="tk">Memory1_PreviousInput</a> = <a id="169c32" class="tk">fy</a>;</td></tr>
+<td><a id="l169" class='ln'>169</a></td><td></td></tr>
 <tr name="170" id="170">
-<td><a id="l170" class='ln'>170</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l170" class='ln'>170</a></td><td>  <span class="ct">/* Outport: '<a class="ct blk" blk_line="170">&lt;Root&gt;/Log4</a>' incorporates:</span></td></tr>
 <tr name="171" id="171">
-<td><a id="l171" class='ln'>171</a></td><td></td></tr>
+<td><a id="l171" class='ln'>171</a></td><td><span class="ct">   *  Inport: '<a class="ct blk" blk_line="171">&lt;Root&gt;/Acc_y</a>'</span></td></tr>
 <tr name="172" id="172">
-<td><a id="l172" class='ln'>172</a></td><td><span class="ct">/* Model initialize function */</span></td></tr>
+<td><a id="l172" class='ln'>172</a></td><td><span class="ct">   */</span></td></tr>
 <tr name="173" id="173">
-<td><a id="l173" class='ln'>173</a></td><td><span class="kw">void</span> <a id="173c6" class="tk">crazyflie_initialize</a>(<span class="kw">void</span>)</td></tr>
+<td><a id="l173" class='ln'>173</a></td><td>  <a id="173c3" class="tk">rtY</a>.<a id="173c7" class="tk">Log4</a> = <a id="173c14" class="tk">rtU</a>.<a id="173c18" class="tk">Acc_y</a>;</td></tr>
 <tr name="174" id="174">
-<td><a id="l174" class='ln'>174</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l174" class='ln'>174</a></td><td></td></tr>
 <tr name="175" id="175">
-<td><a id="l175" class='ln'>175</a></td><td>  <span class="ct">/* (no initialization code required) */</span></td></tr>
+<td><a id="l175" class='ln'>175</a></td><td>  <span class="ct">/* Outport: '<a class="ct blk" blk_line="175">&lt;Root&gt;/Log5</a>' incorporates:</span></td></tr>
 <tr name="176" id="176">
-<td><a id="l176" class='ln'>176</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l176" class='ln'>176</a></td><td><span class="ct">   *  DiscreteIntegrator: '<a class="ct blk" blk_line="176">&lt;Root&gt;/Discrete-Time Integrator</a>'</span></td></tr>
 <tr name="177" id="177">
-<td><a id="l177" class='ln'>177</a></td><td></td></tr>
+<td><a id="l177" class='ln'>177</a></td><td><span class="ct">   */</span></td></tr>
 <tr name="178" id="178">
-<td><a id="l178" class='ln'>178</a></td><td><span class="ct">/* Model terminate function */</span></td></tr>
+<td><a id="l178" class='ln'>178</a></td><td>  <a id="178c3" class="tk">rtY</a>.<a id="178c7" class="tk">Log5</a> = <a id="178c14" class="tk">rtDW</a>.<a id="178c19" class="tk">DiscreteTimeIntegrator_DSTATE</a>;</td></tr>
 <tr name="179" id="179">
-<td><a id="l179" class='ln'>179</a></td><td><span class="kw">void</span> <a id="179c6" class="tk">crazyflie_terminate</a>(<span class="kw">void</span>)</td></tr>
+<td><a id="l179" class='ln'>179</a></td><td></td></tr>
 <tr name="180" id="180">
-<td><a id="l180" class='ln'>180</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l180" class='ln'>180</a></td><td>  <span class="ct">/* Outport: '<a class="ct blk" blk_line="180">&lt;Root&gt;/Log6</a>' incorporates:</span></td></tr>
 <tr name="181" id="181">
-<td><a id="l181" class='ln'>181</a></td><td>  <span class="ct">/* (no terminate code required) */</span></td></tr>
+<td><a id="l181" class='ln'>181</a></td><td><span class="ct">   *  DiscreteIntegrator: '<a class="ct blk" blk_line="181">&lt;Root&gt;/Discrete-Time Integrator1</a>'</span></td></tr>
 <tr name="182" id="182">
-<td><a id="l182" class='ln'>182</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l182" class='ln'>182</a></td><td><span class="ct">   */</span></td></tr>
 <tr name="183" id="183">
-<td><a id="l183" class='ln'>183</a></td><td></td></tr>
+<td><a id="l183" class='ln'>183</a></td><td>  <a id="183c3" class="tk">rtY</a>.<a id="183c7" class="tk">Log6</a> = <a id="183c14" class="tk">rtDW</a>.<a id="183c19" class="tk">DiscreteTimeIntegrator1_DSTATE</a>;</td></tr>
 <tr name="184" id="184">
-<td><a id="l184" class='ln'>184</a></td><td><span class="ct">/*</span></td></tr>
+<td><a id="l184" class='ln'>184</a></td><td></td></tr>
 <tr name="185" id="185">
-<td><a id="l185" class='ln'>185</a></td><td><span class="ct"> * File trailer for generated code.</span></td></tr>
+<td><a id="l185" class='ln'>185</a></td><td>  <span class="ct">/* Update for Memory: '<a class="ct blk" blk_line="185">&lt;Root&gt;/Memory</a>' */</span></td></tr>
 <tr name="186" id="186">
-<td><a id="l186" class='ln'>186</a></td><td><span class="ct"> *</span></td></tr>
+<td><a id="l186" class='ln'>186</a></td><td>  <a id="186c3" class="tk">rtDW</a>.<a id="186c8" class="tk">Memory_PreviousInput</a> = <a id="186c31" class="tk">rtb_theta</a>;</td></tr>
 <tr name="187" id="187">
-<td><a id="l187" class='ln'>187</a></td><td><span class="ct"> * [EOF]</span></td></tr>
+<td><a id="l187" class='ln'>187</a></td><td></td></tr>
 <tr name="188" id="188">
-<td><a id="l188" class='ln'>188</a></td><td><span class="ct"> */</span></td></tr>
+<td><a id="l188" class='ln'>188</a></td><td>  <span class="ct">/* Update for Memory: '<a class="ct blk" blk_line="188">&lt;Root&gt;/Memory1</a>' */</span></td></tr>
 <tr name="189" id="189">
-<td><a id="l189" class='ln'>189</a></td><td></td></tr>
+<td><a id="l189" class='ln'>189</a></td><td>  <a id="189c3" class="tk">rtDW</a>.<a id="189c8" class="tk">Memory1_PreviousInput</a> = <a id="189c32" class="tk">fy</a>;</td></tr>
+<tr name="190" id="190">
+<td><a id="l190" class='ln'>190</a></td><td></td></tr>
+<tr name="191" id="191">
+<td><a id="l191" class='ln'>191</a></td><td>  <span class="ct">/* Update for DiscreteIntegrator: '<a class="ct blk" blk_line="191">&lt;Root&gt;/Discrete-Time Integrator</a>' incorporates:</span></td></tr>
+<tr name="192" id="192">
+<td><a id="l192" class='ln'>192</a></td><td><span class="ct">   *  Inport: '<a class="ct blk" blk_line="192">&lt;Root&gt;/Gyro_y</a>'</span></td></tr>
+<tr name="193" id="193">
+<td><a id="l193" class='ln'>193</a></td><td><span class="ct">   */</span></td></tr>
+<tr name="194" id="194">
+<td><a id="l194" class='ln'>194</a></td><td>  <a id="194c3" class="tk">rtDW</a>.<a id="194c8" class="tk">DiscreteTimeIntegrator_DSTATE</a> <a id="194c38" class="tk">+=</a> 0.01 <a id="194c46" class="tk">*</a> <a id="194c48" class="tk">rtU</a>.<a id="194c52" class="tk">Gyro_y</a>;</td></tr>
+<tr name="195" id="195">
+<td><a id="l195" class='ln'>195</a></td><td></td></tr>
+<tr name="196" id="196">
+<td><a id="l196" class='ln'>196</a></td><td>  <span class="ct">/* Update for DiscreteIntegrator: '<a class="ct blk" blk_line="196">&lt;Root&gt;/Discrete-Time Integrator1</a>' incorporates:</span></td></tr>
+<tr name="197" id="197">
+<td><a id="l197" class='ln'>197</a></td><td><span class="ct">   *  Inport: '<a class="ct blk" blk_line="197">&lt;Root&gt;/Gyro_x</a>'</span></td></tr>
+<tr name="198" id="198">
+<td><a id="l198" class='ln'>198</a></td><td><span class="ct">   */</span></td></tr>
+<tr name="199" id="199">
+<td><a id="l199" class='ln'>199</a></td><td>  <a id="199c3" class="tk">rtDW</a>.<a id="199c8" class="tk">DiscreteTimeIntegrator1_DSTATE</a> <a id="199c39" class="tk">+=</a> 0.01 <a id="199c47" class="tk">*</a> <a id="199c49" class="tk">rtU</a>.<a id="199c53" class="tk">Gyro_x</a>;</td></tr>
+<tr name="200" id="200">
+<td><a id="l200" class='ln'>200</a></td><td><span class="br">}</span></td></tr>
+<tr name="201" id="201">
+<td><a id="l201" class='ln'>201</a></td><td></td></tr>
+<tr name="202" id="202">
+<td><a id="l202" class='ln'>202</a></td><td><span class="ct">/* Model initialize function */</span></td></tr>
+<tr name="203" id="203">
+<td><a id="l203" class='ln'>203</a></td><td><span class="kw">void</span> <a id="203c6" class="tk">crazyflie_initialize</a>(<span class="kw">void</span>)</td></tr>
+<tr name="204" id="204">
+<td><a id="l204" class='ln'>204</a></td><td><span class="br">{</span></td></tr>
+<tr name="205" id="205">
+<td><a id="l205" class='ln'>205</a></td><td>  <span class="ct">/* (no initialization code required) */</span></td></tr>
+<tr name="206" id="206">
+<td><a id="l206" class='ln'>206</a></td><td><span class="br">}</span></td></tr>
+<tr name="207" id="207">
+<td><a id="l207" class='ln'>207</a></td><td></td></tr>
+<tr name="208" id="208">
+<td><a id="l208" class='ln'>208</a></td><td><span class="ct">/* Model terminate function */</span></td></tr>
+<tr name="209" id="209">
+<td><a id="l209" class='ln'>209</a></td><td><span class="kw">void</span> <a id="209c6" class="tk">crazyflie_terminate</a>(<span class="kw">void</span>)</td></tr>
+<tr name="210" id="210">
+<td><a id="l210" class='ln'>210</a></td><td><span class="br">{</span></td></tr>
+<tr name="211" id="211">
+<td><a id="l211" class='ln'>211</a></td><td>  <span class="ct">/* (no terminate code required) */</span></td></tr>
+<tr name="212" id="212">
+<td><a id="l212" class='ln'>212</a></td><td><span class="br">}</span></td></tr>
+<tr name="213" id="213">
+<td><a id="l213" class='ln'>213</a></td><td></td></tr>
+<tr name="214" id="214">
+<td><a id="l214" class='ln'>214</a></td><td><span class="ct">/*</span></td></tr>
+<tr name="215" id="215">
+<td><a id="l215" class='ln'>215</a></td><td><span class="ct"> * File trailer for generated code.</span></td></tr>
+<tr name="216" id="216">
+<td><a id="l216" class='ln'>216</a></td><td><span class="ct"> *</span></td></tr>
+<tr name="217" id="217">
+<td><a id="l217" class='ln'>217</a></td><td><span class="ct"> * [EOF]</span></td></tr>
+<tr name="218" id="218">
+<td><a id="l218" class='ln'>218</a></td><td><span class="ct"> */</span></td></tr>
+<tr name="219" id="219">
+<td><a id="l219" class='ln'>219</a></td><td></td></tr>
 </table>
 </pre>
 </body>
