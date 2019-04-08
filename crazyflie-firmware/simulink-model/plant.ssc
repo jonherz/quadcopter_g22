@@ -73,11 +73,15 @@ equations
 %     tau_y == d*b*sin(pi/4)*(omega_2(1)+omega_2(4)-omega_2(2)-omega_2(3));
     tau_x == d*b*cos(pi/4)*(omega_2(4)+omega_2(3)-omega_2(1)-omega_2(2));
     tau_y == d*b*sin(pi/4)*(omega_2(2)+omega_2(3)-omega_2(1)-omega_2(4));
-
-    tau_z == k * unit * (omega_2(1) + omega_2(3) - omega_2(4)-omega_2(2));
+    
+    
+    tau_z == k * unit * (-omega_2(1) - omega_2(3) + omega_2(4)+omega_2(2));
+    
+    
+    
     tau == [tau_x;tau_y;tau_z];
     
-    J * w_dot == cross(-w,J*w) + tau;
+    J * w_dot == -cross(w,J*w) + tau;
     
     R_x == [1             0              0;
             0 cos(angle(1)) -sin(angle(1));
@@ -92,6 +96,7 @@ equations
             0             0              1];
         
     R == R_x*R_y*R_z;
+    
     
     m*a == [0;0;-m*g] + R*[0;0;ctrl(1)+ctrl(2)+ctrl(3)+ctrl(4)]; 
 
