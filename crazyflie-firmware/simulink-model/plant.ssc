@@ -18,8 +18,9 @@ parameters
     m = {0.027,'kg'};%Mass
     g = {9.81,'m/s^2'};%Gravity
     d = {0.046,'m'};%Arm length
-    k = {1e-9,'1'};%Lift constant
+    k = {1e-9,'1'};%Lift constant 
     b = {2.75e-11,'1'};%Drag constant
+    unit = {1, 'm'};%help unit to make tao_z Nm
 end
 
 parameters(Access=private)    
@@ -36,6 +37,17 @@ end
 variables(Access=private)
     
     % Add time variant variables here
+    omega_2 ={[0;0;0;0],'N'}; %rotation speed squared
+    tau_x ={0,'N*m'}; %rotation speed squared
+    tau_y ={0,'N*m'}; %rotation speed squared
+    tau_z ={0,'N*m'}; %rotation speed squared
+    tau ={[0;0;0],'N*m'}; %rotation speed squared
+    w_dot = {[0;0;0],'rad/s^2'}; % rotational acceleration
+    
+    R_x = {[0 0 0;0 0 0;0 0 0],'1'};
+    R_y = {[0 0 0;0 0 0;0 0 0],'1'};
+    R_z = {[0 0 0;0 0 0;0 0 0],'1'};
+    R = {[0 0 0;0 0 0;0 0 0],'1'};
 
 end
 
@@ -43,14 +55,45 @@ equations
 
     % Add all equations here 
     
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % REPLACE/REMOVE ALL THESE EQUATIONS
-    pos == {[0;0;0],'m'};
-    v == {[0;0;0], 'm/s' };
-    a == {[0;0;0], 'm/s^2' };
-    angle == {[0;0;0],'rad'};
-    w == {[0;0;0],'rad/s'};
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     % REPLACE/REMOVE ALL THESE EQUATIONS
+%     pos == {[0;0;0],'m'};
+%     v == {[0;0;0], 'm/s' };
+%     a == {[0;0;0], 'm/s^2' };
+%     angle == {[0;0;0],'rad'};
+%     w == {[0;0;0],'rad/s'};
+%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    omega_2 == ctrl/b;
+    pos.der == v;
+    v.der == a;
+    angle.der == w;
+    w.der == w_dot;
+    
+%     tau_x == d*b*cos(pi/4)*(omega_2(1)+omega_2(2)-omega_2(4)-omega_2(3));
+%     tau_y == d*b*sin(pi/4)*(omega_2(1)+omega_2(4)-omega_2(2)-omega_2(3));
+    tau_x == d*b*cos(pi/4)*(omega_2(4)+omega_2(3)-omega_2(1)-omega_2(2));
+    tau_y == d*b*sin(pi/4)*(omega_2(2)+omega_2(3)-omega_2(1)-omega_2(4));
+
+    tau_z == k * unit * (omega_2(1) + omega_2(3) - omega_2(4)-omega_2(2));
+    tau == [tau_x;tau_y;tau_z];
+    
+    J * w_dot == cross(-w,J*w) + tau;
+    
+    R_x == [1             0              0;
+            0 cos(angle(1)) -sin(angle(1));
+            0 sin(angle(1)) cos(angle(1))]; 
+        
+    R_y == [cos(angle(2)) 0 sin(angle(2));
+            0             1             0;
+           -sin(angle(2)) 0 cos(angle(2))];
+        
+    R_z == [cos(angle(3)) -sin(angle(3)) 0;
+            sin(angle(3)) cos(angle(3))  0;
+            0             0              1];
+        
+    R == R_x*R_y*R_z;
+    
+    m*a == [0;0;-m*g] + R*[0;0;ctrl(1)+ctrl(2)+ctrl(3)+ctrl(4)]; 
 
 end
 end
