@@ -69,8 +69,8 @@ equations
     angle.der == w;
     w.der == w_dot;
     
-%     tau_x == d*b*cos(pi/4)*(omega_2(1)+omega_2(2)-omega_2(4)-omega_2(3));
-%     tau_y == d*b*sin(pi/4)*(omega_2(1)+omega_2(4)-omega_2(2)-omega_2(3));
+%   tau_x == d*b*cos(pi/4)*(omega_2(1)+omega_2(2)-omega_2(4)-omega_2(3));
+%   tau_y == d*b*sin(pi/4)*(omega_2(1)+omega_2(4)-omega_2(2)-omega_2(3));
     tau_x == d*b*cos(pi/4)*(omega_2(4)+omega_2(3)-omega_2(1)-omega_2(2));
     tau_y == d*b*sin(pi/4)*(omega_2(2)+omega_2(3)-omega_2(1)-omega_2(4));
     
