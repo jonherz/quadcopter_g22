@@ -97,8 +97,8 @@ equations
         
     R == R_x*R_y*R_z;
     
-    
-    m*a == [0;0;-m*g] + R*[0;0;ctrl(1)+ctrl(2)+ctrl(3)+ctrl(4)]; 
+    %m*a == [0;0;-m*g] + R*[0;0;ctrl(1)+ctrl(2)+ctrl(3)+ctrl(4)]; 
+    a == 0;
 
 end
 end

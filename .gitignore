@@ -17,4 +17,5 @@
 !*/crazyflie_firmware/simulink-model/params.m
 !*/crazyflie_firmware/simulink-model/plant.ssc
 !*/crazyflie_firmware/simulink-model/sensors.sscp
+!*/crazyflie_firmware/simulink-model/LQRcontrol.m
 !.gitignore
