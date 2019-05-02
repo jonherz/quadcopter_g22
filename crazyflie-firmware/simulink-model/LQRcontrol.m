@@ -41,17 +41,17 @@ A = [ 0     0     1     0     0
      0     0     0     0     0
      0     0     0     0     0];
 
-B =     [0,            0,            0,            0
-         0,            0,            0,            0
-         -2331.678275, -2331.678275,  2331.678275,  2331.678275
-         -2265.105288,  2265.105288,  2265.105288, -2265.105288
-         -1673430.113,  1673430.113, -1673430.113,  1673430.113];
+B = [0	0	0	0
+	 0	0	0	0
+	-0.02094	-0.02094	0.02094     0.02094
+    -0.02034	0.02034     0.02034     -0.02034
+	-15.03      15.03       -15.03      15.03];
    
-C =    [0         0   57.2958         0         0
+C =    [57.2958   0          0         0         0
+         0   57.2958         0         0         0
+         0         0   57.2958         0         0
          0         0         0   57.2958         0
-         0         0         0         0   57.2958
-   57.2958         0         0         0         0
-         0   57.2958         0         0         0];
+         0         0         0         0   57.2958];
      
 D = [0     0     0     0
      0     0     0     0
@@ -59,21 +59,23 @@ D = [0     0     0     0
      0     0     0     0
      0     0     0     0];
  
-sysc = ss(A,B,C,D);
+
+
+Ai = [A zeros(size(A,1),3); -C([1 2 5],:) zeros(3)];
+Bi = [B; zeros(3,size(B,2))];
+Ci = [C zeros(size(C,1),3)];%;zeros(3,size(C,2)) eye(3)];
+Di = zeros(size(Ci,1),4);
+
+sysc = ss(Ai,Bi,Ci,Di);
 
 %Discretize system
 Ts = 0.01;
 sysd = c2d(sysc,Ts);
 
-Adi = [sysd.A zeros(size(sysd.A,1),3); -C([1 2 5],:) eye(3)];
-Bdi = [sysd.B; zeros(3,size(sysd.B,2))];
-C1i = [C zeros(size(C,1),3);zeros(3,size(C,2)) eye(3)];
-D1i = zeros(size(C1i,1),4);
-
 % Calculate LQR Control Gain
 % Set LQR weighting matrices.
-Q = diag([.01 .01 1 1 10 1000 1000 1000]);
-R = .1*eye(4);
+Q = diag([10 10 .1 .1 .1 1000 1000 1000]);
+R = 0.0000001*eye(4);
 
 % Calculate control gain using LQR optimization.
-KLQR = -dlqr(Adi,Bdi,Q,R);
+KLQR = dlqr(sysd.A,sysd.B,Q,R);
