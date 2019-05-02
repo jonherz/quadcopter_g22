@@ -70,14 +70,10 @@ Bdi = [sysd.B; zeros(3,size(sysd.B,2))];
 C1i = [C zeros(size(C,1),3);zeros(3,size(C,2)) eye(3)];
 D1i = zeros(size(C1i,1),4);
 
-% DT State-Space
-%sysdi = ss(Adi,Bdi,C1i,D1i,Ts);
-
 % Calculate LQR Control Gain
 % Set LQR weighting matrices.
-Q = diag([1 1 10 10 50 10000 10000 10000]);
-R = 1*eye(4);
+Q = diag([.01 .01 1 1 10 1000 1000 1000]);
+R = .1*eye(4);
 
 % Calculate control gain using LQR optimization.
-KLQR = dlqr(Adi,Bdi,Q,R);
-KLQR(:,6:8) = KLQR(:,6:8)*10000
+KLQR = -dlqr(Adi,Bdi,Q,R);
