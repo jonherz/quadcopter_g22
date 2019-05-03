@@ -2,7 +2,7 @@
 ## Makefile generated for Simulink model 'crazyflie'. 
 ## 
 ## Makefile     : crazyflie.mk
-## Generated on : Tue Apr 02 14:12:39 2019
+## Generated on : Fri May 03 09:53:11 2019
 ## MATLAB Coder version: 4.1 (R2018b)
 ## 
 ## Build Info:
@@ -208,7 +208,7 @@ DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_IMPLIED) $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/crazyflie_ert_rtw/crazyflie.c $(START_DIR)/crazyflie_ert_rtw/crazyflieModel.c
+SRCS = $(START_DIR)/crazyflie_ert_rtw/crazyflie.c $(START_DIR)/crazyflie_ert_rtw/crazyflieModel.c $(START_DIR)/crazyflie_ert_rtw/crazyflie_data.c
 
 MAIN_SRC = $(MATLAB_ROOT)/rtw/c/src/common/rt_main.c
 
@@ -218,7 +218,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = crazyflie.o crazyflieModel.o
+OBJS = crazyflie.o crazyflieModel.o crazyflie_data.o
 
 MAIN_OBJ = rt_main.o
 
