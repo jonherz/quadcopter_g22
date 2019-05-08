@@ -193,7 +193,7 @@ PROJ_OBJ_CF2 += configblockeeprom.o
 PROJ_OBJ_CF2 += libarm_math.a
 
 # Code Generation
-PROJ_OBJ_CF2 += crazyflie.o crazyflieModel.o 
+PROJ_OBJ_CF2 += crazyflie.o crazyflieModel.o crazyflie_data.o
 
 OBJ = $(FREERTOS_OBJ) $(PORT_OBJ) $(ST_OBJ) $(PROJ_OBJ) $(CODE_GEN)
 ifeq ($(PLATFORM), CF1)

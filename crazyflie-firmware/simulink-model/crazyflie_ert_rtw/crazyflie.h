@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'crazyflie'.
  *
- * Model version                  : 1.173
+ * Model version                  : 1.195
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Fri Apr  5 15:19:05 2019
+ * C/C++ source code generated on : Wed May  8 14:41:28 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -36,6 +36,14 @@ typedef struct {
   real_T Memory_PreviousInput;         /* '<Root>/Memory' */
   real_T Memory1_PreviousInput;        /* '<Root>/Memory1' */
 } DW;
+
+/* Constant parameters (default storage) */
+typedef struct {
+  /* Expression: -KLQR
+   * Referenced by: '<S1>/LQR'
+   */
+  real_T LQR_Gain[20];
+} ConstP;
 
 /* External inputs (root inport signals with default storage) */
 typedef struct {
@@ -74,6 +82,9 @@ extern ExtU rtU;
 /* External outputs (root outports fed by signals with default storage) */
 extern ExtY rtY;
 
+/* Constant parameters (default storage) */
+extern const ConstP rtConstP;
+
 /* Model entry point functions */
 extern void crazyflie_initialize(void);
 extern void crazyflie_step(void);
@@ -82,6 +93,14 @@ extern void crazyflie_terminate(void);
 /*-
  * These blocks were eliminated from the model due to optimizations:
  *
+ * Block '<S3>/Gain' : Unused code path elimination
+ * Block '<S3>/Gain1' : Unused code path elimination
+ * Block '<S3>/Sum' : Unused code path elimination
+ * Block '<S3>/Sum1' : Unused code path elimination
+ * Block '<S3>/Sum2' : Unused code path elimination
+ * Block '<S3>/Sum3' : Unused code path elimination
+ * Block '<S3>/Unary Minus' : Unused code path elimination
+ * Block '<S3>/Unary Minus1' : Unused code path elimination
  * Block '<Root>/ToDouble' : Eliminate redundant data type conversion
  * Block '<Root>/ToDouble1' : Eliminate redundant data type conversion
  * Block '<Root>/ToDouble2' : Eliminate redundant data type conversion
@@ -105,8 +124,9 @@ extern void crazyflie_terminate(void);
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'crazyflie'
- * '<S1>'   : 'crazyflie/MATLAB Function'
- * '<S2>'   : 'crazyflie/Subsystem'
+ * '<S1>'   : 'crazyflie/LQR Control'
+ * '<S2>'   : 'crazyflie/MATLAB Function'
+ * '<S3>'   : 'crazyflie/Subsystem1'
  */
 #endif                                 /* RTW_HEADER_crazyflie_h_ */
 
