@@ -10,7 +10,7 @@ outputs
     v = {[0;0;0], 'm/s' }; %Velocity:right
     a = {[0;0;0], 'm/s^2' }; %Acceleration:right
     
-    angle = {[25*pi/180;0;0],'rad'};%Angle:right
+    angle = {[0*pi/180;0;0],'rad'};%Angle:right
     w = {[0;0;0],'rad/s'};%Angular velocity:right
 end
 

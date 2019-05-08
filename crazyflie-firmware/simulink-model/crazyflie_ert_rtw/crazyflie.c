@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'crazyflie'.
  *
- * Model version                  : 1.193
+ * Model version                  : 1.195
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Fri May  3 13:35:33 2019
+ * C/C++ source code generated on : Wed May  8 14:41:28 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -39,10 +39,9 @@ void crazyflie_step(void)
   real_T rtb_Gain4;
   real_T rtb_theta;
   real_T rtb_Saturation[4];
-  real_T fy_0[8];
+  real_T fy_0[5];
   int32_T i;
   int32_T i_0;
-  real_T tmp;
 
   /* Gain: '<Root>/Gain3' incorporates:
    *  Inport: '<Root>/Gyro_x'
@@ -82,45 +81,48 @@ void crazyflie_step(void)
   fy = (0.01 * rtb_Gain3 + rtDW.Memory1_PreviousInput) * 0.95 +
     0.050000000000000044 * atan2(fy, fz);
 
-  /* Gain: '<Root>/Gain5' incorporates:
-   *  Inport: '<Root>/Gyro_z'
-   */
-  fz = 0.017453292519943295 * rtU.Gyro_z;
-
   /* SignalConversion: '<S1>/TmpSignal ConversionAtLQRInport1' incorporates:
-   *  DiscreteIntegrator: '<S1>/Discrete-Time Integrator'
-   *  DiscreteIntegrator: '<S1>/Discrete-Time Integrator1'
-   *  DiscreteIntegrator: '<S1>/Discrete-Time Integrator2'
+   *  Gain: '<Root>/Gain'
+   *  Gain: '<Root>/Gain1'
+   *  Gain: '<Root>/Gain2'
+   *  Gain: '<Root>/Gain5'
+   *  Inport: '<Root>/Gyro_z'
+   *  Inport: '<Root>/Ref_Pitch'
+   *  Inport: '<Root>/Ref_Roll'
+   *  Inport: '<Root>/Ref_YawRate'
+   *  Sum: '<S1>/Add1'
+   *  Sum: '<S1>/Add2'
+   *  Sum: '<S1>/Add3'
    */
-  fy_0[0] = fy;
-  fy_0[1] = rtb_theta;
+  fy_0[0] = fy - 0.017453292519943295 * rtU.Ref_Roll;
+  fy_0[1] = rtb_theta - 0.017453292519943295 * rtU.Ref_Pitch;
   fy_0[2] = rtb_Gain3;
   fy_0[3] = rtb_Gain4;
-  fy_0[4] = fz;
-  fy_0[5] = rtDW.DiscreteTimeIntegrator_DSTATE;
-  fy_0[6] = rtDW.DiscreteTimeIntegrator1_DSTATE;
-  fy_0[7] = rtDW.DiscreteTimeIntegrator2_DSTATE;
+  fy_0[4] = 0.017453292519943295 * rtU.Gyro_z - 0.017453292519943295 *
+    rtU.Ref_YawRate;
   for (i = 0; i < 4; i++) {
     /* Sum: '<S1>/Add' incorporates:
+     *  Constant: '<Root>/Constant'
      *  Gain: '<S1>/LQR'
      *  Inport: '<Root>/Base_Thrust'
+     *  Sum: '<Root>/Add'
      */
-    tmp = 0.0;
-    for (i_0 = 0; i_0 < 8; i_0++) {
-      tmp += rtConstP.LQR_Gain[(i_0 << 2) + i] * fy_0[i_0];
+    fz = 0.0;
+    for (i_0 = 0; i_0 < 5; i_0++) {
+      fz += rtConstP.LQR_Gain[(i_0 << 2) + i] * fy_0[i_0];
     }
 
-    tmp += rtU.Base_Thrust;
+    fz += 29000.0 + rtU.Base_Thrust;
 
     /* End of Sum: '<S1>/Add' */
 
     /* Saturate: '<S1>/Saturation' */
-    if (tmp > 65536.0) {
+    if (fz > 65536.0) {
       rtb_Saturation[i] = 65536.0;
-    } else if (tmp < 0.0) {
+    } else if (fz < 0.0) {
       rtb_Saturation[i] = 0.0;
     } else {
-      rtb_Saturation[i] = tmp;
+      rtb_Saturation[i] = fz;
     }
 
     /* End of Saturate: '<S1>/Saturation' */
@@ -189,12 +191,12 @@ void crazyflie_step(void)
   /* Outport: '<Root>/Log5' incorporates:
    *  DiscreteIntegrator: '<Root>/Discrete-Time Integrator'
    */
-  rtY.Log5 = rtDW.DiscreteTimeIntegrator_DSTATE_h;
+  rtY.Log5 = rtDW.DiscreteTimeIntegrator_DSTATE;
 
   /* Outport: '<Root>/Log6' incorporates:
    *  DiscreteIntegrator: '<Root>/Discrete-Time Integrator1'
    */
-  rtY.Log6 = rtDW.DiscreteTimeIntegrator1_DSTAT_i;
+  rtY.Log6 = rtDW.DiscreteTimeIntegrator1_DSTATE;
 
   /* Update for Memory: '<Root>/Memory' */
   rtDW.Memory_PreviousInput = rtb_theta;
@@ -202,35 +204,11 @@ void crazyflie_step(void)
   /* Update for Memory: '<Root>/Memory1' */
   rtDW.Memory1_PreviousInput = fy;
 
-  /* Update for DiscreteIntegrator: '<S1>/Discrete-Time Integrator' incorporates:
-   *  Gain: '<Root>/Gain'
-   *  Inport: '<Root>/Ref_Roll'
-   *  Sum: '<S1>/Sum3'
-   */
-  rtDW.DiscreteTimeIntegrator_DSTATE += (0.017453292519943295 * rtU.Ref_Roll -
-    fy) * 0.01;
-
-  /* Update for DiscreteIntegrator: '<S1>/Discrete-Time Integrator1' incorporates:
-   *  Gain: '<Root>/Gain1'
-   *  Inport: '<Root>/Ref_Pitch'
-   *  Sum: '<S1>/Sum1'
-   */
-  rtDW.DiscreteTimeIntegrator1_DSTATE += (0.017453292519943295 * rtU.Ref_Pitch -
-    rtb_theta) * 0.01;
-
-  /* Update for DiscreteIntegrator: '<S1>/Discrete-Time Integrator2' incorporates:
-   *  Gain: '<Root>/Gain2'
-   *  Inport: '<Root>/Ref_YawRate'
-   *  Sum: '<S1>/Sum2'
-   */
-  rtDW.DiscreteTimeIntegrator2_DSTATE += (0.017453292519943295 * rtU.Ref_YawRate
-    - fz) * 0.01;
-
   /* Update for DiscreteIntegrator: '<Root>/Discrete-Time Integrator' */
-  rtDW.DiscreteTimeIntegrator_DSTATE_h += 0.01 * rtb_Gain4;
+  rtDW.DiscreteTimeIntegrator_DSTATE += 0.01 * rtb_Gain4;
 
   /* Update for DiscreteIntegrator: '<Root>/Discrete-Time Integrator1' */
-  rtDW.DiscreteTimeIntegrator1_DSTAT_i += 0.01 * rtb_Gain3;
+  rtDW.DiscreteTimeIntegrator1_DSTATE += 0.01 * rtb_Gain3;
 }
 
 /* Model initialize function */

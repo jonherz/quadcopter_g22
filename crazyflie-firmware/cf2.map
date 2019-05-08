@@ -154,7 +154,7 @@ motorMap            0x4               bin/motors.o
 pidYawRate          0x38              bin/attitude_pid_controller.o
 rtU                 0x50              bin/crazyflie.o
 rollOutput          0x2               bin/attitude_pid_controller.o
-rtDW                0x38              bin/crazyflie.o
+rtDW                0x20              bin/crazyflie.o
 cosPitch            0x4               bin/imu_cf2.o
 pidPitchRate        0x38              bin/attitude_pid_controller.o
 cosRoll             0x4               bin/imu_cf2.o
@@ -13372,7 +13372,7 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
  *(.flashtext)
                 0x0000000008004188                . = ALIGN (0x4)
 
-.text           0x0000000008004188    0x175fc
+.text           0x0000000008004188    0x1752c
                 0x0000000008004188                . = ALIGN (0x4)
  *(.text)
  .text          0x0000000008004188      0x378 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_arm_addsubdf3.o)
@@ -15521,765 +15521,765 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
                 0x000000000801319c                configblockGetCalibRoll
  *fill*         0x00000000080131bc        0x4 
  .text.crazyflie_step
-                0x00000000080131c0      0x4a4 bin/crazyflie.o
+                0x00000000080131c0      0x434 bin/crazyflie.o
                 0x00000000080131c0                crazyflie_step
  .text.crazyflie_initialize
-                0x0000000008013664        0x2 bin/crazyflie.o
-                0x0000000008013664                crazyflie_initialize
- *fill*         0x0000000008013666        0x2 
+                0x00000000080135f4        0x2 bin/crazyflie.o
+                0x00000000080135f4                crazyflie_initialize
+ *fill*         0x00000000080135f6        0x2 
  .text.crazyflieModelTask
-                0x0000000008013668      0x188 bin/crazyflieModel.o
+                0x00000000080135f8      0x188 bin/crazyflieModel.o
  .text.crazyflieModelInit
-                0x00000000080137f0       0x48 bin/crazyflieModel.o
-                0x00000000080137f0                crazyflieModelInit
+                0x0000000008013780       0x48 bin/crazyflieModel.o
+                0x0000000008013780                crazyflieModelInit
  .text.crazyflieModelTest
-                0x0000000008013838       0x12 bin/crazyflieModel.o
-                0x0000000008013838                crazyflieModelTest
- *fill*         0x000000000801384a        0x2 
- .text.atanf    0x000000000801384c      0x1a4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_atan.o)
-                0x000000000801384c                atanf
- .text.cosf     0x00000000080139f0       0x90 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_cos.o)
-                0x00000000080139f0                cosf
- .text.fabsf    0x0000000008013a80       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_fabs.o)
-                0x0000000008013a80                fabsf
- .text.sinf     0x0000000008013a90       0x94 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_sin.o)
-                0x0000000008013a90                sinf
- .text.tanf     0x0000000008013b24       0x5c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_tan.o)
-                0x0000000008013b24                tanf
- .text.atan2    0x0000000008013b80        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_atan2.o)
-                0x0000000008013b80                atan2
- .text.log10    0x0000000008013b84      0x100 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_log10.o)
-                0x0000000008013b84                log10
- *fill*         0x0000000008013c84        0x4 
- .text.pow      0x0000000008013c88      0x338 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_pow.o)
-                0x0000000008013c88                pow
- .text.sqrt     0x0000000008013fc0       0xb8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_sqrt.o)
-                0x0000000008013fc0                sqrt
- .text.powf     0x0000000008014078      0x324 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-wf_pow.o)
-                0x0000000008014078                powf
- *fill*         0x000000000801439c        0x4 
+                0x00000000080137c8       0x12 bin/crazyflieModel.o
+                0x00000000080137c8                crazyflieModelTest
+ *fill*         0x00000000080137da        0x2 
+ .text.atanf    0x00000000080137dc      0x1a4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_atan.o)
+                0x00000000080137dc                atanf
+ .text.cosf     0x0000000008013980       0x90 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_cos.o)
+                0x0000000008013980                cosf
+ .text.fabsf    0x0000000008013a10       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_fabs.o)
+                0x0000000008013a10                fabsf
+ .text.sinf     0x0000000008013a20       0x94 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_sin.o)
+                0x0000000008013a20                sinf
+ .text.tanf     0x0000000008013ab4       0x5c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_tan.o)
+                0x0000000008013ab4                tanf
+ .text.atan2    0x0000000008013b10        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_atan2.o)
+                0x0000000008013b10                atan2
+ .text.log10    0x0000000008013b14      0x100 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_log10.o)
+                0x0000000008013b14                log10
+ *fill*         0x0000000008013c14        0x4 
+ .text.pow      0x0000000008013c18      0x338 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_pow.o)
+                0x0000000008013c18                pow
+ .text.sqrt     0x0000000008013f50       0xb8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_sqrt.o)
+                0x0000000008013f50                sqrt
+ .text.powf     0x0000000008014008      0x324 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-wf_pow.o)
+                0x0000000008014008                powf
+ *fill*         0x000000000801432c        0x4 
  .text.__ieee754_atan2
-                0x00000000080143a0      0x1c4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_atan2.o)
-                0x00000000080143a0                __ieee754_atan2
- *fill*         0x0000000008014564        0x4 
+                0x0000000008014330      0x1c4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_atan2.o)
+                0x0000000008014330                __ieee754_atan2
+ *fill*         0x00000000080144f4        0x4 
  .text.__ieee754_log10
-                0x0000000008014568      0x13c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_log10.o)
-                0x0000000008014568                __ieee754_log10
- *fill*         0x00000000080146a4        0x4 
+                0x00000000080144f8      0x13c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_log10.o)
+                0x00000000080144f8                __ieee754_log10
+ *fill*         0x0000000008014634        0x4 
  .text.__ieee754_pow
-                0x00000000080146a8      0xab8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_pow.o)
-                0x00000000080146a8                __ieee754_pow
+                0x0000000008014638      0xab8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_pow.o)
+                0x0000000008014638                __ieee754_pow
  .text.__ieee754_sqrt
-                0x0000000008015160      0x194 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_sqrt.o)
-                0x0000000008015160                __ieee754_sqrt
+                0x00000000080150f0      0x194 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_sqrt.o)
+                0x00000000080150f0                __ieee754_sqrt
  .text.__ieee754_powf
-                0x00000000080152f4      0x5e4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_pow.o)
-                0x00000000080152f4                __ieee754_powf
+                0x0000000008015284      0x5e4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_pow.o)
+                0x0000000008015284                __ieee754_powf
  .text.__ieee754_rem_pio2f
-                0x00000000080158d8      0x298 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_rem_pio2.o)
-                0x00000000080158d8                __ieee754_rem_pio2f
+                0x0000000008015868      0x298 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_rem_pio2.o)
+                0x0000000008015868                __ieee754_rem_pio2f
  .text.__ieee754_sqrtf
-                0x0000000008015b70        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_sqrt.o)
-                0x0000000008015b70                __ieee754_sqrtf
+                0x0000000008015b00        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_sqrt.o)
+                0x0000000008015b00                __ieee754_sqrtf
  .text.__kernel_cosf
-                0x0000000008015b78      0x104 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_cos.o)
-                0x0000000008015b78                __kernel_cosf
+                0x0000000008015b08      0x104 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_cos.o)
+                0x0000000008015b08                __kernel_cosf
  .text.__kernel_rem_pio2f
-                0x0000000008015c7c      0x650 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_rem_pio2.o)
-                0x0000000008015c7c                __kernel_rem_pio2f
+                0x0000000008015c0c      0x650 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_rem_pio2.o)
+                0x0000000008015c0c                __kernel_rem_pio2f
  .text.__kernel_sinf
-                0x00000000080162cc       0x90 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_sin.o)
-                0x00000000080162cc                __kernel_sinf
+                0x000000000801625c       0x90 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_sin.o)
+                0x000000000801625c                __kernel_sinf
  .text.__kernel_tanf
-                0x000000000801635c      0x1c8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_tan.o)
-                0x000000000801635c                __kernel_tanf
- *fill*         0x0000000008016524        0x4 
- .text.atan     0x0000000008016528      0x358 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_atan.o)
-                0x0000000008016528                atan
- .text.fabs     0x0000000008016880       0x14 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_fabs.o)
-                0x0000000008016880                fabs
- .text.finite   0x0000000008016894       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_finite.o)
-                0x0000000008016894                finite
- .text.matherr  0x00000000080168a4        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_matherr.o)
-                0x00000000080168a4                matherr
- .text.nan      0x00000000080168a8       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_nan.o)
-                0x00000000080168a8                nan
- .text.rint     0x00000000080168b8      0x110 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_rint.o)
-                0x00000000080168b8                rint
- .text.scalbn   0x00000000080169c8      0x114 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_scalbn.o)
-                0x00000000080169c8                scalbn
- .text.finitef  0x0000000008016adc       0x14 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_finite.o)
-                0x0000000008016adc                finitef
- .text.floorf   0x0000000008016af0       0x8c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_floor.o)
-                0x0000000008016af0                floorf
- .text.nanf     0x0000000008016b7c        0xc /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_nan.o)
-                0x0000000008016b7c                nanf
- .text.rintf    0x0000000008016b88       0xc0 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_rint.o)
-                0x0000000008016b88                rintf
- .text.scalbnf  0x0000000008016c48       0xd0 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_scalbn.o)
-                0x0000000008016c48                scalbnf
+                0x00000000080162ec      0x1c8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_tan.o)
+                0x00000000080162ec                __kernel_tanf
+ *fill*         0x00000000080164b4        0x4 
+ .text.atan     0x00000000080164b8      0x358 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_atan.o)
+                0x00000000080164b8                atan
+ .text.fabs     0x0000000008016810       0x14 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_fabs.o)
+                0x0000000008016810                fabs
+ .text.finite   0x0000000008016824       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_finite.o)
+                0x0000000008016824                finite
+ .text.matherr  0x0000000008016834        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_matherr.o)
+                0x0000000008016834                matherr
+ .text.nan      0x0000000008016838       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_nan.o)
+                0x0000000008016838                nan
+ .text.rint     0x0000000008016848      0x110 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_rint.o)
+                0x0000000008016848                rint
+ .text.scalbn   0x0000000008016958      0x114 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_scalbn.o)
+                0x0000000008016958                scalbn
+ .text.finitef  0x0000000008016a6c       0x14 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_finite.o)
+                0x0000000008016a6c                finitef
+ .text.floorf   0x0000000008016a80       0x8c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_floor.o)
+                0x0000000008016a80                floorf
+ .text.nanf     0x0000000008016b0c        0xc /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_nan.o)
+                0x0000000008016b0c                nanf
+ .text.rintf    0x0000000008016b18       0xc0 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_rint.o)
+                0x0000000008016b18                rintf
+ .text.scalbnf  0x0000000008016bd8       0xd0 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_scalbn.o)
+                0x0000000008016bd8                scalbnf
  .text.__ieee754_log
-                0x0000000008016d18      0x3b4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_log.o)
-                0x0000000008016d18                __ieee754_log
+                0x0000000008016ca8      0x3b4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_log.o)
+                0x0000000008016ca8                __ieee754_log
  .text.copysign
-                0x00000000080170cc       0x1c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_copysign.o)
-                0x00000000080170cc                copysign
+                0x000000000801705c       0x1c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_copysign.o)
+                0x000000000801705c                copysign
  .text.copysignf
-                0x00000000080170e8       0x18 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_copysign.o)
-                0x00000000080170e8                copysignf
- .text.__errno  0x0000000008017100        0xc /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-errno.o)
-                0x0000000008017100                __errno
+                0x0000000008017078       0x18 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_copysign.o)
+                0x0000000008017078                copysignf
+ .text.__errno  0x0000000008017090        0xc /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-errno.o)
+                0x0000000008017090                __errno
  .text.__locale_ctype_ptr_l
-                0x000000000801710c        0x6 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
-                0x000000000801710c                __locale_ctype_ptr_l
- *fill*         0x0000000008017112        0x2 
+                0x000000000801709c        0x6 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+                0x000000000801709c                __locale_ctype_ptr_l
+ *fill*         0x00000000080170a2        0x2 
  .text.__locale_ctype_ptr
-                0x0000000008017114       0x1c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
-                0x0000000008017114                __locale_ctype_ptr
+                0x00000000080170a4       0x1c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+                0x00000000080170a4                __locale_ctype_ptr
  .text.__ascii_mbtowc
-                0x0000000008017130       0x24 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
-                0x0000000008017130                __ascii_mbtowc
- .text.memcmp   0x0000000008017154       0x1e /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcmp.o)
-                0x0000000008017154                memcmp
- .text.memcpy   0x0000000008017172       0x16 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
-                0x0000000008017172                memcpy
- .text.memset   0x0000000008017188       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
-                0x0000000008017188                memset
- .text.strcpy   0x0000000008017198       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
-                0x0000000008017198                strcpy
- .text.strncmp  0x00000000080171a8       0x24 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strncmp.o)
-                0x00000000080171a8                strncmp
- .text.strncpy  0x00000000080171cc       0x2a /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strncpy.o)
-                0x00000000080171cc                strncpy
+                0x00000000080170c0       0x24 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mbtowc_r.o)
+                0x00000000080170c0                __ascii_mbtowc
+ .text.memcmp   0x00000000080170e4       0x1e /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcmp.o)
+                0x00000000080170e4                memcmp
+ .text.memcpy   0x0000000008017102       0x16 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memcpy-stub.o)
+                0x0000000008017102                memcpy
+ .text.memset   0x0000000008017118       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+                0x0000000008017118                memset
+ .text.strcpy   0x0000000008017128       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strcpy.o)
+                0x0000000008017128                strcpy
+ .text.strncmp  0x0000000008017138       0x24 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strncmp.o)
+                0x0000000008017138                strncmp
+ .text.strncpy  0x000000000801715c       0x2a /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strncpy.o)
+                0x000000000801715c                strncpy
  .text._strtol_l.isra.0
-                0x00000000080171f6       0xf6 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
- .text.strtol   0x00000000080172ec       0x2c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
-                0x00000000080172ec                strtol
+                0x0000000008017186       0xf6 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
+ .text.strtol   0x000000000801727c       0x2c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
+                0x000000000801727c                strtol
  .text.__ascii_wctomb
-                0x0000000008017318       0x1a /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wctomb_r.o)
-                0x0000000008017318                __ascii_wctomb
+                0x00000000080172a8       0x1a /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wctomb_r.o)
+                0x00000000080172a8                __ascii_wctomb
  *(.rodata)
- .rodata        0x0000000008017332       0x28 bin/deck_info.o
+ .rodata        0x00000000080172c2       0x28 bin/deck_info.o
  *(.rodata*)
  .rodata.prvTaskIsTaskSuspended.str1.1
-                0x000000000801735a       0x1f bin/tasks.o
+                0x00000000080172ea       0x1f bin/tasks.o
  .rodata.vTaskDelayUntil.str1.1
-                0x0000000008017379       0x2b bin/tasks.o
+                0x0000000008017309       0x2b bin/tasks.o
  .rodata.vTaskDelete.str1.1
-                0x00000000080173a4       0x1a bin/tasks.o
+                0x0000000008017334       0x1a bin/tasks.o
  .rodata.vTaskPlaceOnEventList.str1.1
-                0x00000000080173be        0xc bin/tasks.o
+                0x000000000801734e        0xc bin/tasks.o
  .rodata.vTaskSetTimeOutState.str1.1
-                0x00000000080173ca        0xa bin/tasks.o
+                0x000000000801735a        0xa bin/tasks.o
  .rodata.vTaskStartScheduler.str1.1
-                0x00000000080173d4        0xd bin/tasks.o
+                0x0000000008017364        0xd bin/tasks.o
  .rodata.vTaskSwitchContext.str1.1
-                0x00000000080173e1       0x47 bin/tasks.o
+                0x0000000008017371       0x47 bin/tasks.o
  .rodata.xTaskCheckForTimeOut.str1.1
-                0x0000000008017428        0xe bin/tasks.o
+                0x00000000080173b8        0xe bin/tasks.o
  .rodata.xTaskGenericCreate.str1.1
-                0x0000000008017436       0x6e bin/tasks.o
+                0x00000000080173c6       0x6e bin/tasks.o
  .rodata.xTaskIncrementTick.str1.1
-                0x00000000080174a4       0x2b bin/tasks.o
+                0x0000000008017434       0x2b bin/tasks.o
  .rodata.xTaskPriorityDisinherit.str1.1
-                0x00000000080174cf       0x2b bin/tasks.o
+                0x000000000801745f       0x2b bin/tasks.o
  .rodata.xTaskRemoveFromEventList.str1.1
-                0x00000000080174fa        0xf bin/tasks.o
+                0x000000000801748a        0xf bin/tasks.o
  .rodata.xTaskResumeAll.str1.1
-                0x0000000008017509       0x15 bin/tasks.o
+                0x0000000008017499       0x15 bin/tasks.o
  .rodata.uxQueueMessagesWaiting.str1.1
-                0x000000000801751e       0x15 bin/queue.o
+                0x00000000080174ae       0x15 bin/queue.o
                                           0x7 (size before relaxing)
  .rodata.xQueueGenericCreate.str1.1
-                0x000000000801751e       0x22 bin/queue.o
+                0x00000000080174ae       0x22 bin/queue.o
                                          0x2a (size before relaxing)
  .rodata.xQueueGenericReceive.str1.1
-                0x0000000008017540       0x4b bin/queue.o
+                0x00000000080174d0       0x4b bin/queue.o
  .rodata.xQueueGenericReset.str1.1
-                0x000000000801758b       0x21 bin/queue.o
+                0x000000000801751b       0x21 bin/queue.o
  .rodata.xQueueGenericSend.str1.1
-                0x00000000080175ac       0xed bin/queue.o
+                0x000000000801753c       0xed bin/queue.o
  .rodata.xQueueGiveFromISR.str1.1
-                0x0000000008017699       0x74 bin/queue.o
+                0x0000000008017629       0x74 bin/queue.o
  .rodata.prvCheckForValidListAndQueue.str1.1
-                0x000000000801770d       0x2b bin/timers.o
+                0x000000000801769d       0x2b bin/timers.o
  .rodata.prvSwitchTimerLists.str1.1
-                0x0000000008017738        0x8 bin/timers.o
+                0x00000000080176c8        0x8 bin/timers.o
  .rodata.prvTimerTask.str1.1
-                0x0000000008017740       0x25 bin/timers.o
+                0x00000000080176d0       0x25 bin/timers.o
  .rodata.xTimerCreate.str1.1
-                0x0000000008017765       0x1c bin/timers.o
+                0x00000000080176f5       0x1c bin/timers.o
  .rodata.xTimerCreateTimerTask.str1.1
-                0x0000000008017781        0x8 bin/timers.o
+                0x0000000008017711        0x8 bin/timers.o
                                          0x10 (size before relaxing)
  .rodata.xTimerGenericCommand.str1.1
-                0x0000000008017789        0x7 bin/timers.o
+                0x0000000008017719        0x7 bin/timers.o
  .rodata.pvPortMalloc.str1.1
-                0x0000000008017790       0xa9 bin/heap_4.o
+                0x0000000008017720       0xa9 bin/heap_4.o
  .rodata.vPortFree.str1.1
-                0x0000000008017839       0x51 bin/heap_4.o
+                0x00000000080177c9       0x51 bin/heap_4.o
  .rodata.prvTaskExitError.str1.1
-                0x000000000801788a       0x48 bin/port.o
+                0x000000000801781a       0x48 bin/port.o
  .rodata.vPortEnterCritical.str1.1
-                0x00000000080178d2       0x35 bin/port.o
+                0x0000000008017862       0x35 bin/port.o
  .rodata.vPortExitCritical.str1.1
-                0x0000000008017907       0x12 bin/port.o
+                0x0000000008017897       0x12 bin/port.o
  .rodata.vPortValidateInterruptPriority.str1.1
-                0x0000000008017919       0x6c bin/port.o
+                0x00000000080178a9       0x6c bin/port.o
  .rodata.xPortStartScheduler.str1.1
-                0x0000000008017985       0x46 bin/port.o
+                0x0000000008017915       0x46 bin/port.o
  .rodata.printHardFault.str1.1
-                0x00000000080179cb       0xae bin/nvic.o
- *fill*         0x0000000008017a79        0x3 
+                0x000000000801795b       0xae bin/nvic.o
+ *fill*         0x0000000008017a09        0x3 
  .rodata.CONN_M1
-                0x0000000008017a7c       0x44 bin/motors.o
+                0x0000000008017a0c       0x44 bin/motors.o
  .rodata.CONN_M2
-                0x0000000008017ac0       0x44 bin/motors.o
+                0x0000000008017a50       0x44 bin/motors.o
  .rodata.CONN_M3
-                0x0000000008017b04       0x44 bin/motors.o
+                0x0000000008017a94       0x44 bin/motors.o
  .rodata.CONN_M4
-                0x0000000008017b48       0x44 bin/motors.o
+                0x0000000008017ad8       0x44 bin/motors.o
  .rodata.MOTORS
-                0x0000000008017b8c       0x10 bin/motors.o
-                0x0000000008017b8c                MOTORS
+                0x0000000008017b1c       0x10 bin/motors.o
+                0x0000000008017b1c                MOTORS
  .rodata.RZR_M1_BL
-                0x0000000008017b9c       0x44 bin/motors.o
+                0x0000000008017b2c       0x44 bin/motors.o
  .rodata.RZR_M2_BL
-                0x0000000008017be0       0x44 bin/motors.o
+                0x0000000008017b70       0x44 bin/motors.o
  .rodata.RZR_M3_BL
-                0x0000000008017c24       0x44 bin/motors.o
+                0x0000000008017bb4       0x44 bin/motors.o
  .rodata.RZR_M4_BL
-                0x0000000008017c68       0x44 bin/motors.o
+                0x0000000008017bf8       0x44 bin/motors.o
  .rodata.motorsSetRatio.str1.1
-                0x0000000008017cac       0x2c bin/motors.o
+                0x0000000008017c3c       0x2c bin/motors.o
  .rodata.str1.1
-                0x0000000008017cd8       0x25 bin/motors.o
+                0x0000000008017c68       0x25 bin/motors.o
                                          0x29 (size before relaxing)
- *fill*         0x0000000008017cfd        0x1 
+ *fill*         0x0000000008017c8d        0x1 
  .rodata.testsound
-                0x0000000008017cfe        0x8 bin/motors.o
+                0x0000000008017c8e        0x8 bin/motors.o
  .rodata.crtpInit.str1.1
-                0x0000000008017d06       0x10 bin/crtp.o
+                0x0000000008017c96       0x10 bin/crtp.o
  .rodata.crtpInitTaskQueue.str1.1
-                0x0000000008017d16       0x2e bin/crtp.o
+                0x0000000008017ca6       0x2e bin/crtp.o
  .rodata.crtpReceivePacket.str1.1
-                0x0000000008017d44        0xf bin/crtp.o
+                0x0000000008017cd4        0xf bin/crtp.o
                                          0x11 (size before relaxing)
  .rodata.crtpSendPacket.str1.1
-                0x0000000008017d53       0x1e bin/crtp.o
+                0x0000000008017ce3       0x1e bin/crtp.o
  .rodata.ledseqInit.str1.1
-                0x0000000008017d71        0xc bin/ledseq.o
- *fill*         0x0000000008017d7d        0x3 
+                0x0000000008017d01        0xc bin/ledseq.o
+ *fill*         0x0000000008017d0d        0x3 
  .rodata.seq_alive
-                0x0000000008017d80       0x18 bin/ledseq.o
-                0x0000000008017d80                seq_alive
+                0x0000000008017d10       0x18 bin/ledseq.o
+                0x0000000008017d10                seq_alive
  .rodata.seq_armed
-                0x0000000008017d98       0x18 bin/ledseq.o
-                0x0000000008017d98                seq_armed
+                0x0000000008017d28       0x18 bin/ledseq.o
+                0x0000000008017d28                seq_armed
  .rodata.seq_bootloader
-                0x0000000008017db0       0x18 bin/ledseq.o
-                0x0000000008017db0                seq_bootloader
+                0x0000000008017d40       0x18 bin/ledseq.o
+                0x0000000008017d40                seq_bootloader
  .rodata.seq_calibrated
-                0x0000000008017dc8       0x18 bin/ledseq.o
-                0x0000000008017dc8                seq_calibrated
+                0x0000000008017d58       0x18 bin/ledseq.o
+                0x0000000008017d58                seq_calibrated
  .rodata.seq_charged
-                0x0000000008017de0       0x10 bin/ledseq.o
-                0x0000000008017de0                seq_charged
+                0x0000000008017d70       0x10 bin/ledseq.o
+                0x0000000008017d70                seq_charged
  .rodata.seq_linkup
-                0x0000000008017df0       0x18 bin/ledseq.o
-                0x0000000008017df0                seq_linkup
+                0x0000000008017d80       0x18 bin/ledseq.o
+                0x0000000008017d80                seq_linkup
  .rodata.seq_lowbat
-                0x0000000008017e08       0x10 bin/ledseq.o
-                0x0000000008017e08                seq_lowbat
+                0x0000000008017d98       0x10 bin/ledseq.o
+                0x0000000008017d98                seq_lowbat
  .rodata.seq_testPassed
-                0x0000000008017e18       0x78 bin/ledseq.o
-                0x0000000008017e18                seq_testPassed
+                0x0000000008017da8       0x78 bin/ledseq.o
+                0x0000000008017da8                seq_testPassed
  .rodata.sequences
-                0x0000000008017e90       0x28 bin/ledseq.o
+                0x0000000008017e20       0x28 bin/ledseq.o
  .rodata.vApplicationMallocFailedHook.str1.1
-                0x0000000008017eb8       0x11 bin/freeRTOSdebug.o
+                0x0000000008017e48       0x11 bin/freeRTOSdebug.o
  .rodata.str1.1
-                0x0000000008017ec9       0x4c bin/system.o
+                0x0000000008017e59       0x4c bin/system.o
                                          0x54 (size before relaxing)
  .rodata.systemInit.str1.1
-                0x0000000008017f15       0xa1 bin/system.o
+                0x0000000008017ea5       0xa1 bin/system.o
  .rodata.systemLaunch.str1.1
-                0x0000000008017fb6        0x7 bin/system.o
+                0x0000000008017f46        0x7 bin/system.o
  .rodata.systemTask.str1.1
-                0x0000000008017fbd       0x2e bin/system.o
+                0x0000000008017f4d       0x2e bin/system.o
  .rodata.fullMsg
-                0x0000000008017feb        0x5 bin/console.o
+                0x0000000008017f7b        0x5 bin/console.o
  .rodata.crtpserviceHandler.str1.1
-                0x0000000008017ff0       0x13 bin/crtpservice.o
+                0x0000000008017f80       0x13 bin/crtpservice.o
  .rodata.paramInit.str1.1
-                0x0000000008018003        0x6 bin/param.o
+                0x0000000008017f93        0x6 bin/param.o
  .rodata.paramTOCProcess.str1.1
-                0x0000000008018009       0x35 bin/param.o
+                0x0000000008017f99       0x35 bin/param.o
                                          0x36 (size before relaxing)
  .rodata.eepromSerialNum
-                0x000000000801803e        0x8 bin/mem.o
+                0x0000000008017fce        0x8 bin/mem.o
  .rodata.memInit.str1.1
-                0x0000000008018046        0x4 bin/mem.o
+                0x0000000008017fd6        0x4 bin/mem.o
  .rodata.logGetInt.str1.1
-                0x000000000801804a       0x21 bin/log.o
+                0x0000000008017fda       0x21 bin/log.o
  .rodata.logInit.str1.1
-                0x000000000801806b        0x4 bin/log.o
+                0x0000000008017ffb        0x4 bin/log.o
  .rodata.logTask.str1.1
-                0x000000000801806f        0xe bin/log.o
+                0x0000000008017fff        0xe bin/log.o
                                           0xf (size before relaxing)
  .rodata.typeLength
-                0x000000000801807d        0x9 bin/log.o
+                0x000000000801800d        0x9 bin/log.o
  .rodata.str1.1
-                0x0000000008018086       0x5d bin/commander.o
+                0x0000000008018016       0x5d bin/commander.o
                                          0x68 (size before relaxing)
  .rodata.str1.1
-                0x00000000080180e3       0x68 bin/attitude_pid_controller.o
+                0x0000000008018073       0x68 bin/attitude_pid_controller.o
                                          0x7e (size before relaxing)
  .rodata.str1.1
-                0x000000000801814b       0x1c bin/sensfusion6.o
+                0x00000000080180db       0x1c bin/sensfusion6.o
                                          0x30 (size before relaxing)
  .rodata.str1.1
-                0x0000000008018167       0x82 bin/stabilizer.o
+                0x00000000080180f7       0x82 bin/stabilizer.o
                                          0xbf (size before relaxing)
  .rodata.str1.1
-                0x00000000080181e9       0x5b bin/position_estimator_altitude.o
+                0x0000000008018179       0x5b bin/position_estimator_altitude.o
                                          0x6b (size before relaxing)
  .rodata.str1.1
-                0x0000000008018244       0x6d bin/position_controller_pid.o
+                0x00000000080181d4       0x6d bin/position_controller_pid.o
                                          0x87 (size before relaxing)
  .rodata.str1.1
-                0x00000000080182b1       0x18 bin/controller_pid.o
+                0x0000000008018241       0x18 bin/controller_pid.o
                                          0x42 (size before relaxing)
  .rodata.str1.1
-                0x00000000080182c9        0x4 bin/sensors_stock.o
+                0x0000000008018259        0x4 bin/sensors_stock.o
                                          0x1f (size before relaxing)
  .rodata.str1.1
-                0x00000000080182cd       0x36 bin/power_distribution_stock.o
+                0x000000000801825d       0x36 bin/power_distribution_stock.o
                                          0x3c (size before relaxing)
  .rodata.assertFail.str1.1
-                0x0000000008018303       0x1a bin/cfassert.o
+                0x0000000008018293       0x1a bin/cfassert.o
  .rodata.printAssertSnapshotData.str1.1
-                0x000000000801831d       0x3f bin/cfassert.o
+                0x00000000080182ad       0x3f bin/cfassert.o
  .rodata.str1.1
-                0x000000000801835c        0x1 bin/cfassert.o
- .rodata.digit  0x000000000801835c       0x10 bin/eprintf.o
+                0x00000000080182ec        0x1 bin/cfassert.o
+ .rodata.digit  0x00000000080182ec       0x10 bin/eprintf.o
  .rodata.V_MODIFIED
-                0x000000000801836c        0x1 bin/version.o
-                0x000000000801836c                V_MODIFIED
- *fill*         0x000000000801836d        0x3 
+                0x00000000080182fc        0x1 bin/version.o
+                0x00000000080182fc                V_MODIFIED
+ *fill*         0x00000000080182fd        0x3 
  .rodata.V_REVISION_0
-                0x0000000008018370        0x4 bin/version.o
-                0x0000000008018370                V_REVISION_0
+                0x0000000008018300        0x4 bin/version.o
+                0x0000000008018300                V_REVISION_0
  .rodata.V_REVISION_1
-                0x0000000008018374        0x2 bin/version.o
-                0x0000000008018374                V_REVISION_1
+                0x0000000008018304        0x2 bin/version.o
+                0x0000000008018304                V_REVISION_1
  .rodata.str1.1
-                0x0000000008018376       0x3c bin/version.o
+                0x0000000008018306       0x3c bin/version.o
                                          0x45 (size before relaxing)
- *fill*         0x00000000080183b2        0x2 
+ *fill*         0x0000000008018342        0x2 
  .rodata.uxTopUsedPriority
-                0x00000000080183b4        0x4 bin/FreeRTOS-openocd.o
-                0x00000000080183b4                uxTopUsedPriority
+                0x0000000008018344        0x4 bin/FreeRTOS-openocd.o
+                0x0000000008018344                uxTopUsedPriority
  .rodata.led_pin
-                0x00000000080183b8       0x14 bin/led_f405.o
+                0x0000000008018348       0x14 bin/led_f405.o
  .rodata.led_polarity
-                0x00000000080183cc       0x14 bin/led_f405.o
+                0x000000000801835c       0x14 bin/led_f405.o
  .rodata.led_port
-                0x00000000080183e0       0x14 bin/led_f405.o
+                0x0000000008018370       0x14 bin/led_f405.o
  .rodata.mpu6500EvaluateSelfTest.str1.1
-                0x00000000080183f4       0x48 bin/mpu6500.o
+                0x0000000008018384       0x48 bin/mpu6500.o
  .rodata.mpu6500SelfTest.str1.1
-                0x000000000801843c       0x27 bin/mpu6500.o
- *fill*         0x0000000008018463        0x1 
+                0x00000000080183cc       0x27 bin/mpu6500.o
+ *fill*         0x00000000080183f3        0x1 
  .rodata.mpu6500StTb
-                0x0000000008018464      0x200 bin/mpu6500.o
+                0x00000000080183f4      0x200 bin/mpu6500.o
  .rodata.lps25hEvaluateSelfTest.str1.1
-                0x0000000008018664       0x47 bin/lps25h.o
+                0x00000000080185f4       0x47 bin/lps25h.o
  .rodata.lps25hSelfTest.str1.1
-                0x00000000080186ab        0xc bin/lps25h.o
+                0x000000000801863b        0xc bin/lps25h.o
                                          0x15 (size before relaxing)
- *fill*         0x00000000080186b7        0x1 
+ *fill*         0x0000000008018647        0x1 
  .rodata.deckBusDef
-                0x00000000080186b8       0x50 bin/i2c_drv.o
+                0x0000000008018648       0x50 bin/i2c_drv.o
  .rodata.sensorBusDef
-                0x0000000008018708       0x50 bin/i2c_drv.o
+                0x0000000008018698       0x50 bin/i2c_drv.o
  .rodata.ak8963EvaluateSelfTest.str1.1
-                0x0000000008018758       0x3e bin/ak8963.o
+                0x00000000080186e8       0x3e bin/ak8963.o
  .rodata.ak8963SelfTest.str1.1
-                0x0000000008018796       0x19 bin/ak8963.o
+                0x0000000008018726       0x19 bin/ak8963.o
                                          0x1f (size before relaxing)
  .rodata.eepromTest.str1.1
-                0x00000000080187af       0x3e bin/eeprom.o
+                0x000000000801873f       0x3e bin/eeprom.o
  .rodata.watchdogNormalStartTest.str1.1
-                0x00000000080187ed       0x3a bin/watchdog.o
+                0x000000000801877d       0x3a bin/watchdog.o
  .rodata.cppmGetTimestamp.str1.1
-                0x0000000008018827       0x21 bin/cppm.o
+                0x00000000080187b7       0x21 bin/cppm.o
  .rodata.usblinkInit.str1.1
-                0x0000000008018848        0x8 bin/usblink.o
+                0x00000000080187d8        0x8 bin/usblink.o
  .rodata.usblinkSendPacket.str1.1
-                0x0000000008018850       0x2c bin/usblink.o
+                0x00000000080187e0       0x2c bin/usblink.o
  .rodata.USBD_USR_ConfigStrDescriptor.str1.1
-                0x000000000801887c        0xb bin/usbd_desc.o
+                0x000000000801880c        0xb bin/usbd_desc.o
  .rodata.USBD_USR_InterfaceStrDescriptor.str1.1
-                0x0000000008018887       0x21 bin/usbd_desc.o
+                0x0000000008018817       0x21 bin/usbd_desc.o
  .rodata.USBD_USR_ManufacturerStrDescriptor.str1.1
-                0x00000000080188a8        0xc bin/usbd_desc.o
+                0x0000000008018838        0xc bin/usbd_desc.o
  .rodata.USBD_USR_ProductStrDescriptor.str1.1
-                0x00000000080188b4       0x21 bin/usbd_desc.o
+                0x0000000008018844       0x21 bin/usbd_desc.o
                                          0x2f (size before relaxing)
  .rodata.bin2hex
-                0x00000000080188d5       0x10 bin/usbd_desc.o
+                0x0000000008018865       0x10 bin/usbd_desc.o
  .rodata.imu6Init.str1.1
-                0x00000000080188e5       0xd4 bin/imu_cf2.o
+                0x0000000008018875       0xd4 bin/imu_cf2.o
  .rodata.imu6ManufacturingTest.str1.1
-                0x00000000080189b9       0x8c bin/imu_cf2.o
+                0x0000000008018949       0x8c bin/imu_cf2.o
  .rodata.imu6Test.str1.1
-                0x0000000008018a45       0x14 bin/imu_cf2.o
+                0x00000000080189d5       0x14 bin/imu_cf2.o
  .rodata.str1.1
-                0x0000000008018a59       0x5d bin/imu_cf2.o
+                0x00000000080189e9       0x5d bin/imu_cf2.o
                                          0x8d (size before relaxing)
- *fill*         0x0000000008018ab6        0x2 
+ *fill*         0x0000000008018a46        0x2 
  .rodata.bat671723HS25C
-                0x0000000008018ab8       0x28 bin/pm_f405.o
+                0x0000000008018a48       0x28 bin/pm_f405.o
  .rodata.pmInit.str1.1
-                0x0000000008018ae0        0x8 bin/pm_f405.o
+                0x0000000008018a70        0x8 bin/pm_f405.o
  .rodata.str1.1
-                0x0000000008018ae8       0x42 bin/pm_f405.o
+                0x0000000008018a78       0x42 bin/pm_f405.o
                                          0x45 (size before relaxing)
  .rodata.syslinkInit.str1.1
-                0x0000000008018b2a        0x8 bin/syslink.o
+                0x0000000008018aba        0x8 bin/syslink.o
  .rodata.syslinkSendPacket.str1.1
-                0x0000000008018b32       0x1b bin/syslink.o
+                0x0000000008018ac2       0x1b bin/syslink.o
  .rodata.syslinkTask.str1.1
-                0x0000000008018b4d       0x2e bin/syslink.o
+                0x0000000008018add       0x2e bin/syslink.o
                                          0x30 (size before relaxing)
  .rodata.radiolinkInit.str1.1
-                0x0000000008018b7b       0x13 bin/radiolink.o
+                0x0000000008018b0b       0x13 bin/radiolink.o
  .rodata.radiolinkSendCRTPPacket.str1.1
-                0x0000000008018b8e       0x18 bin/radiolink.o
+                0x0000000008018b1e       0x18 bin/radiolink.o
                                          0x36 (size before relaxing)
  .rodata.str1.1
-                0x0000000008018ba6       0x10 bin/radiolink.o
+                0x0000000008018b36       0x10 bin/radiolink.o
                                          0x16 (size before relaxing)
  .rodata.owRead.str1.1
-                0x0000000008018bb6       0x16 bin/ow_syslink.o
+                0x0000000008018b46       0x16 bin/ow_syslink.o
  .rodata.owSyslinkTransfer.str1.1
-                0x0000000008018bcc       0x30 bin/ow_syslink.o
+                0x0000000008018b5c       0x30 bin/ow_syslink.o
                                          0x46 (size before relaxing)
  .rodata.BIAS_500_16
-                0x0000000008018bfc       0x12 bin/libdw1000.o
+                0x0000000008018b8c       0x12 bin/libdw1000.o
  .rodata.BIAS_500_64
-                0x0000000008018c0e       0x12 bin/libdw1000.o
+                0x0000000008018b9e       0x12 bin/libdw1000.o
  .rodata.BIAS_900_16
-                0x0000000008018c20       0x12 bin/libdw1000.o
+                0x0000000008018bb0       0x12 bin/libdw1000.o
  .rodata.BIAS_900_64
-                0x0000000008018c32       0x12 bin/libdw1000.o
+                0x0000000008018bc2       0x12 bin/libdw1000.o
  .rodata.MODE_LONGDATA_RANGE_LOWPOWER
-                0x0000000008018c44        0x3 bin/libdw1000.o
-                0x0000000008018c44                MODE_LONGDATA_RANGE_LOWPOWER
+                0x0000000008018bd4        0x3 bin/libdw1000.o
+                0x0000000008018bd4                MODE_LONGDATA_RANGE_LOWPOWER
  .rodata.MODE_SHORTDATA_FAST_ACCURACY
-                0x0000000008018c47        0x3 bin/libdw1000.o
-                0x0000000008018c47                MODE_SHORTDATA_FAST_ACCURACY
- *fill*         0x0000000008018c4a        0x2 
+                0x0000000008018bd7        0x3 bin/libdw1000.o
+                0x0000000008018bd7                MODE_SHORTDATA_FAST_ACCURACY
+ *fill*         0x0000000008018bda        0x2 
  .rodata.calibrated
-                0x0000000008018c4c      0x148 bin/sound_cf2.o
+                0x0000000008018bdc      0x148 bin/sound_cf2.o
  .rodata.chg_done
-                0x0000000008018d94      0x148 bin/sound_cf2.o
+                0x0000000008018d24      0x148 bin/sound_cf2.o
  .rodata.factory_test
-                0x0000000008018edc      0x148 bin/sound_cf2.o
+                0x0000000008018e6c      0x148 bin/sound_cf2.o
  .rodata.lowbatt
-                0x0000000008019024      0x148 bin/sound_cf2.o
+                0x0000000008018fb4      0x148 bin/sound_cf2.o
  .rodata.range_fast
-                0x000000000801916c      0x148 bin/sound_cf2.o
+                0x00000000080190fc      0x148 bin/sound_cf2.o
  .rodata.range_slow
-                0x00000000080192b4      0x148 bin/sound_cf2.o
+                0x0000000008019244      0x148 bin/sound_cf2.o
  .rodata.soundInit.str1.1
-                0x00000000080193fc        0xb bin/sound_cf2.o
- *fill*         0x0000000008019407        0x1 
+                0x000000000801938c        0xb bin/sound_cf2.o
+ *fill*         0x0000000008019397        0x1 
  .rodata.startup
-                0x0000000008019408      0x148 bin/sound_cf2.o
+                0x0000000008019398      0x148 bin/sound_cf2.o
  .rodata.starwars
-                0x0000000008019550      0x148 bin/sound_cf2.o
+                0x00000000080194e0      0x148 bin/sound_cf2.o
  .rodata.str1.1
-                0x0000000008019698       0x1e bin/sound_cf2.o
+                0x0000000008019628       0x1e bin/sound_cf2.o
                                          0x2b (size before relaxing)
  .rodata.tilt.str1.1
-                0x00000000080196b6       0x16 bin/sound_cf2.o
- *fill*         0x00000000080196b6        0x2 
+                0x0000000008019646       0x16 bin/sound_cf2.o
+ *fill*         0x0000000008019646        0x2 
  .rodata.usb_connect
-                0x00000000080196b8      0x148 bin/sound_cf2.o
+                0x0000000008019648      0x148 bin/sound_cf2.o
  .rodata.usb_disconnect
-                0x0000000008019800      0x148 bin/sound_cf2.o
+                0x0000000008019790      0x148 bin/sound_cf2.o
  .rodata.valkyries
-                0x0000000008019948      0x148 bin/sound_cf2.o
+                0x00000000080198d8      0x148 bin/sound_cf2.o
  .rodata.extRxInit.str1.1
-                0x0000000008019a90        0x6 bin/extrx.o
+                0x0000000008019a20        0x6 bin/extrx.o
  .rodata.str1.1
-                0x0000000008019a96       0x1b bin/extrx.o
+                0x0000000008019a26       0x1b bin/extrx.o
                                          0x37 (size before relaxing)
  .rodata.deckInit.str1.1
-                0x0000000008019ab1       0x1f bin/deck.o
+                0x0000000008019a41       0x1f bin/deck.o
  .rodata.deckTest.str1.1
-                0x0000000008019ad0       0x40 bin/deck.o
+                0x0000000008019a60       0x40 bin/deck.o
  .rodata.deckInfoInit.str1.1
-                0x0000000008019b10      0x2b9 bin/deck_info.o
+                0x0000000008019aa0      0x2b9 bin/deck_info.o
                                         0x2bb (size before relaxing)
  .rodata.printDeckInfo.str1.1
-                0x0000000008019dc9       0x2f bin/deck_info.o
+                0x0000000008019d59       0x2f bin/deck_info.o
  .rodata.deckdriversInit.str1.1
-                0x0000000008019df8       0x20 bin/deck_drivers.o
+                0x0000000008019d88       0x20 bin/deck_drivers.o
  .rodata.deckGPIOMapping
-                0x0000000008019e18       0x9c bin/deck_constants.o
-                0x0000000008019e18                deckGPIOMapping
+                0x0000000008019da8       0x9c bin/deck_constants.o
+                0x0000000008019da8                deckGPIOMapping
  .rodata.rzrInit.str1.1
-                0x0000000008019eb4       0x1e bin/rzr.o
- *fill*         0x0000000008019ed2        0x2 
+                0x0000000008019e44       0x1e bin/rzr.o
+ *fill*         0x0000000008019e62        0x2 
  .rodata.rzr_deck
-                0x0000000008019ed4       0x18 bin/rzr.o
+                0x0000000008019e64       0x18 bin/rzr.o
  .rodata.str1.1
-                0x0000000008019eec        0x6 bin/rzr.o
+                0x0000000008019e7c        0x6 bin/rzr.o
  .rodata.batteryChargeEffect.str1.1
-                0x0000000008019ef2        0x8 bin/ledring12.o
+                0x0000000008019e82        0x8 bin/ledring12.o
  .rodata.blueRing
-                0x0000000008019ef2       0x24 bin/ledring12.o
+                0x0000000008019e82       0x24 bin/ledring12.o
  .rodata.brightnessEffect.str1.1
-                0x0000000008019f16        0xb bin/ledring12.o
+                0x0000000008019ea6        0xb bin/ledring12.o
  .rodata.colorRing
-                0x0000000008019f16       0x24 bin/ledring12.o
+                0x0000000008019ea6       0x24 bin/ledring12.o
  .rodata.gravityLight.str1.1
-                0x0000000008019f3a       0x16 bin/ledring12.o
+                0x0000000008019eca       0x16 bin/ledring12.o
  .rodata.ledring12Init.str1.1
-                0x0000000008019f3a        0xa bin/ledring12.o
+                0x0000000008019eca        0xa bin/ledring12.o
  .rodata.ledring12_deck
-                0x0000000008019f44       0x18 bin/ledring12.o
+                0x0000000008019ed4       0x18 bin/ledring12.o
  .rodata.str1.1
-                0x0000000008019f5c       0x58 bin/ledring12.o
+                0x0000000008019eec       0x58 bin/ledring12.o
                                          0x76 (size before relaxing)
  .rodata.test_pat
-                0x0000000008019fb4        0x9 bin/ledring12.o
+                0x0000000008019f44        0x9 bin/ledring12.o
  .rodata.tiltEffect.str1.1
-                0x0000000008019fbd        0x7 bin/ledring12.o
+                0x0000000008019f4d        0x7 bin/ledring12.o
  .rodata.whiteRing
-                0x0000000008019fbd       0x24 bin/ledring12.o
- *fill*         0x0000000008019fe1        0x3 
+                0x0000000008019f4d       0x24 bin/ledring12.o
+ *fill*         0x0000000008019f71        0x3 
  .rodata.buzzer_deck
-                0x0000000008019fe4       0x18 bin/buzzdeck.o
+                0x0000000008019f74       0x18 bin/buzzdeck.o
  .rodata.str1.1
-                0x0000000008019ffc        0x9 bin/buzzdeck.o
+                0x0000000008019f8c        0x9 bin/buzzdeck.o
  .rodata.gtgpsInit.str1.1
-                0x000000000801a005       0x2c bin/gtgps.o
+                0x0000000008019f95       0x2c bin/gtgps.o
                                          0x32 (size before relaxing)
  .rodata.gtgpsTask.str1.1
-                0x000000000801a031        0xc bin/gtgps.o
- *fill*         0x000000000801a03d        0x3 
+                0x0000000008019fc1        0xc bin/gtgps.o
+ *fill*         0x0000000008019fcd        0x3 
  .rodata.gtgps_deck
-                0x000000000801a040       0x18 bin/gtgps.o
+                0x0000000008019fd0       0x18 bin/gtgps.o
  .rodata.str1.1
-                0x000000000801a058       0x2c bin/gtgps.o
+                0x0000000008019fe8       0x2c bin/gtgps.o
                                          0x30 (size before relaxing)
  .rodata.dwm1000Init.str1.1
-                0x000000000801a084       0x36 bin/dwm1000.o
+                0x000000000801a014       0x36 bin/dwm1000.o
  .rodata.dwm1000Test.str1.1
-                0x000000000801a0ba       0x27 bin/dwm1000.o
- *fill*         0x000000000801a0e1        0x3 
+                0x000000000801a04a       0x27 bin/dwm1000.o
+ *fill*         0x000000000801a071        0x3 
  .rodata.dwm1000_deck
-                0x000000000801a0e4       0x18 bin/dwm1000.o
+                0x000000000801a074       0x18 bin/dwm1000.o
  .rodata.str1.1
-                0x000000000801a0fc      0x170 bin/dwm1000.o
+                0x000000000801a08c      0x170 bin/dwm1000.o
                                         0x188 (size before relaxing)
  .rodata.cppm_deck
-                0x000000000801a26c       0x18 bin/cppmdeck.o
+                0x000000000801a1fc       0x18 bin/cppmdeck.o
  .rodata.str1.1
-                0x000000000801a284        0x7 bin/cppmdeck.o
+                0x000000000801a214        0x7 bin/cppmdeck.o
  .rodata.exptestTestAllPins.str1.1
-                0x000000000801a28b       0x19 bin/exptest.o
+                0x000000000801a21b       0x19 bin/exptest.o
  .rodata.exptest_deck
-                0x000000000801a2a4       0x18 bin/exptest.o
+                0x000000000801a234       0x18 bin/exptest.o
  .rodata.str1.1
-                0x000000000801a2bc        0xa bin/exptest.o
+                0x000000000801a24c        0xa bin/exptest.o
  .rodata.configblockInit.str1.1
-                0x000000000801a2c6       0x3d bin/configblockeeprom.o
+                0x000000000801a256       0x3d bin/configblockeeprom.o
  .rodata.crazyflieModelInit.str1.1
-                0x000000000801a303        0xf bin/crazyflieModel.o
+                0x000000000801a293        0xf bin/crazyflieModel.o
  .rodata.str1.1
-                0x000000000801a312       0x32 bin/crazyflieModel.o
+                0x000000000801a2a2       0x32 bin/crazyflieModel.o
                                          0xa8 (size before relaxing)
- *fill*         0x000000000801a344        0x4 
+ *fill*         0x000000000801a2d4        0x4 
  .rodata.rtConstP
-                0x000000000801a348      0x100 bin/crazyflie_data.o
-                0x000000000801a348                rtConstP
+                0x000000000801a2d8       0xa0 bin/crazyflie_data.o
+                0x000000000801a2d8                rtConstP
  .rodata.atanhi
-                0x000000000801a448       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_atan.o)
+                0x000000000801a378       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_atan.o)
  .rodata.atanlo
-                0x000000000801a458       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_atan.o)
+                0x000000000801a388       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_atan.o)
  .rodata.log10.str1.4
-                0x000000000801a468        0x6 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_log10.o)
+                0x000000000801a398        0x6 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_log10.o)
                                           0x9 (size before relaxing)
- *fill*         0x000000000801a46e        0x2 
+ *fill*         0x000000000801a39e        0x2 
  .rodata.pow.str1.4
-                0x000000000801a470        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_pow.o)
+                0x000000000801a3a0        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_pow.o)
  .rodata.sqrt.str1.4
-                0x000000000801a474        0x5 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_sqrt.o)
- *fill*         0x000000000801a479        0x3 
+                0x000000000801a3a4        0x5 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-w_sqrt.o)
+ *fill*         0x000000000801a3a9        0x3 
  .rodata.powf.str1.4
-                0x000000000801a47c        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-wf_pow.o)
+                0x000000000801a3ac        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-wf_pow.o)
                                           0x5 (size before relaxing)
  .rodata.__ieee754_pow.str1.4
-                0x000000000801a484        0x1 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_pow.o)
+                0x000000000801a3b4        0x1 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-e_pow.o)
  .rodata.__ieee754_powf.str1.4
-                0x000000000801a484        0x1 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_pow.o)
+                0x000000000801a3b4        0x1 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_pow.o)
  .rodata.npio2_hw
-                0x000000000801a484       0x80 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_rem_pio2.o)
+                0x000000000801a3b4       0x80 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_rem_pio2.o)
  .rodata.two_over_pi
-                0x000000000801a504      0x318 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_rem_pio2.o)
- .rodata.PIo2   0x000000000801a81c       0x2c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_rem_pio2.o)
+                0x000000000801a434      0x318 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-ef_rem_pio2.o)
+ .rodata.PIo2   0x000000000801a74c       0x2c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_rem_pio2.o)
  .rodata.init_jk
-                0x000000000801a848        0xc /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_rem_pio2.o)
- *fill*         0x000000000801a854        0x4 
+                0x000000000801a778        0xc /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-kf_rem_pio2.o)
+ *fill*         0x000000000801a784        0x4 
  .rodata.atanhi
-                0x000000000801a858       0x20 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_atan.o)
+                0x000000000801a788       0x20 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_atan.o)
  .rodata.atanlo
-                0x000000000801a878       0x20 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_atan.o)
- .rodata.TWO52  0x000000000801a898       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_rint.o)
- .rodata.TWO23  0x000000000801a8a8        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_rint.o)
+                0x000000000801a7a8       0x20 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_atan.o)
+ .rodata.TWO52  0x000000000801a7c8       0x10 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-s_rint.o)
+ .rodata.TWO23  0x000000000801a7d8        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libm.a(lib_a-sf_rint.o)
  .rodata._setlocale_r.str1.1
-                0x000000000801a8b0        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+                0x000000000801a7e0        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
                                           0x9 (size before relaxing)
  .rodata.str1.1
-                0x000000000801a8b8        0x2 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
+                0x000000000801a7e8        0x2 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-locale.o)
  .rodata._ctype_
-                0x000000000801a8ba      0x101 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ctype_.o)
-                0x000000000801a8ba                _ctype_
+                0x000000000801a7ea      0x101 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-ctype_.o)
+                0x000000000801a7ea                _ctype_
  *(.glue_7)
- .glue_7        0x000000000801a9bb        0x0 linker stubs
+ .glue_7        0x000000000801a8eb        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x000000000801a9bb        0x0 linker stubs
+ .glue_7t       0x000000000801a8eb        0x0 linker stubs
  *(.init)
- *fill*         0x000000000801a9bb        0x1 
- .init          0x000000000801a9bc        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
-                0x000000000801a9bc                _init
+ *fill*         0x000000000801a8eb        0x1 
+ .init          0x000000000801a8ec        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
+                0x000000000801a8ec                _init
  *(.fini)
- .fini          0x000000000801a9c0        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
-                0x000000000801a9c0                _fini
+ .fini          0x000000000801a8f0        0x4 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
+                0x000000000801a8f0                _fini
  *(.eh_frame)
-                0x000000000801a9c4                . = ALIGN (0x4)
-                0x000000000801a9c4                _param_start = .
+                0x000000000801a8f4                . = ALIGN (0x4)
+                0x000000000801a8f4                _param_start = .
  *(.param)
  *(.param.*)
- .param.cpu     0x000000000801a9c4       0x48 bin/system.o
- .param.system  0x000000000801aa0c       0x24 bin/system.o
+ .param.cpu     0x000000000801a8f4       0x48 bin/system.o
+ .param.system  0x000000000801a93c       0x24 bin/system.o
  .param.flightmode
-                0x000000000801aa30       0x78 bin/commander.o
+                0x000000000801a960       0x78 bin/commander.o
  .param.pid_attitude
-                0x000000000801aaa8       0x84 bin/attitude_pid_controller.o
+                0x000000000801a9d8       0x84 bin/attitude_pid_controller.o
  .param.pid_rate
-                0x000000000801ab2c       0x84 bin/attitude_pid_controller.o
+                0x000000000801aa5c       0x84 bin/attitude_pid_controller.o
  .param.sensorfusion6
-                0x000000000801abb0       0x3c bin/sensfusion6.o
- .param.posEst  0x000000000801abec       0x48 bin/position_estimator_altitude.o
+                0x000000000801aae0       0x3c bin/sensfusion6.o
+ .param.posEst  0x000000000801ab1c       0x48 bin/position_estimator_altitude.o
  .param.posCtlPid
-                0x000000000801ac34       0x9c bin/position_controller_pid.o
+                0x000000000801ab64       0x9c bin/position_controller_pid.o
  .param.controller
-                0x000000000801acd0       0x24 bin/controller_pid.o
- .param.lps     0x000000000801acf4       0x48 bin/sensors_stock.o
+                0x000000000801ac00       0x24 bin/controller_pid.o
+ .param.lps     0x000000000801ac24       0x48 bin/sensors_stock.o
  .param.motorPowerSet
-                0x000000000801ad3c       0x54 bin/power_distribution_stock.o
+                0x000000000801ac6c       0x54 bin/power_distribution_stock.o
  .param.firmware
-                0x000000000801ad90       0x3c bin/version.o
+                0x000000000801acc0       0x3c bin/version.o
  .param.imu_acc_lpf
-                0x000000000801adcc       0x24 bin/imu_cf2.o
+                0x000000000801acfc       0x24 bin/imu_cf2.o
  .param.imu_sensors
-                0x000000000801adf0       0x30 bin/imu_cf2.o
+                0x000000000801ad20       0x30 bin/imu_cf2.o
  .param.imu_tests
-                0x000000000801ae20       0x3c bin/imu_cf2.o
- .param.sound   0x000000000801ae5c       0x48 bin/sound_cf2.o
- .param.ring    0x000000000801aea4       0x84 bin/ledring12.o
+                0x000000000801ad50       0x3c bin/imu_cf2.o
+ .param.sound   0x000000000801ad8c       0x48 bin/sound_cf2.o
+ .param.ring    0x000000000801add4       0x84 bin/ledring12.o
  .param.anchorpos
-                0x000000000801af28       0xf0 bin/dwm1000.o
-                0x000000000801b018                _param_stop = .
-                0x000000000801b018                . = ALIGN (0x4)
-                0x000000000801b018                _log_start = .
+                0x000000000801ae58       0xf0 bin/dwm1000.o
+                0x000000000801af48                _param_stop = .
+                0x000000000801af48                . = ALIGN (0x4)
+                0x000000000801af48                _log_start = .
  *(.log)
  *(.log.*)
- .log.pwm       0x000000000801b018       0x48 bin/motors.o
- .log.sys       0x000000000801b060       0x24 bin/system.o
- .log.acc       0x000000000801b084       0x3c bin/stabilizer.o
- .log.baro      0x000000000801b0c0       0x3c bin/stabilizer.o
+ .log.pwm       0x000000000801af48       0x48 bin/motors.o
+ .log.sys       0x000000000801af90       0x24 bin/system.o
+ .log.acc       0x000000000801afb4       0x3c bin/stabilizer.o
+ .log.baro      0x000000000801aff0       0x3c bin/stabilizer.o
  .log.controller
-                0x000000000801b0fc       0x24 bin/stabilizer.o
+                0x000000000801b02c       0x24 bin/stabilizer.o
  .log.ctrltarget
-                0x000000000801b120       0x3c bin/stabilizer.o
- .log.gyro      0x000000000801b15c       0x3c bin/stabilizer.o
- .log.mag       0x000000000801b198       0x3c bin/stabilizer.o
+                0x000000000801b050       0x3c bin/stabilizer.o
+ .log.gyro      0x000000000801b08c       0x3c bin/stabilizer.o
+ .log.mag       0x000000000801b0c8       0x3c bin/stabilizer.o
  .log.stabilizer
-                0x000000000801b1d4       0x48 bin/stabilizer.o
+                0x000000000801b104       0x48 bin/stabilizer.o
  .log.posEstimatorAlt
-                0x000000000801b21c       0x30 bin/position_estimator_altitude.o
+                0x000000000801b14c       0x30 bin/position_estimator_altitude.o
  .log.posCtlAlt
-                0x000000000801b24c       0x60 bin/position_controller_pid.o
+                0x000000000801b17c       0x60 bin/position_controller_pid.o
  .log.controller
-                0x000000000801b2ac       0x48 bin/controller_pid.o
- .log.motor     0x000000000801b2f4       0x48 bin/power_distribution_stock.o
- .log.mag_raw   0x000000000801b33c       0x3c bin/imu_cf2.o
- .log.pm        0x000000000801b378       0x6c bin/pm_f405.o
- .log.radio     0x000000000801b3e4       0x24 bin/radiolink.o
- .log.extrx     0x000000000801b408       0x78 bin/extrx.o
- .log.gps       0x000000000801b480       0x60 bin/gtgps.o
- .log.ranging   0x000000000801b4e0       0xf0 bin/dwm1000.o
- .log.acc       0x000000000801b5d0       0x3c bin/crazyflieModel.o
- .log.baro      0x000000000801b60c       0x3c bin/crazyflieModel.o
- .log.gyro      0x000000000801b648       0x3c bin/crazyflieModel.o
- .log.mag       0x000000000801b684       0x3c bin/crazyflieModel.o
- .log.motor     0x000000000801b6c0       0x48 bin/crazyflieModel.o
- .log.simulink  0x000000000801b708       0x60 bin/crazyflieModel.o
-                0x000000000801b768                _log_stop = .
-                0x000000000801b768                _deckDriver_start = .
+                0x000000000801b1dc       0x48 bin/controller_pid.o
+ .log.motor     0x000000000801b224       0x48 bin/power_distribution_stock.o
+ .log.mag_raw   0x000000000801b26c       0x3c bin/imu_cf2.o
+ .log.pm        0x000000000801b2a8       0x6c bin/pm_f405.o
+ .log.radio     0x000000000801b314       0x24 bin/radiolink.o
+ .log.extrx     0x000000000801b338       0x78 bin/extrx.o
+ .log.gps       0x000000000801b3b0       0x60 bin/gtgps.o
+ .log.ranging   0x000000000801b410       0xf0 bin/dwm1000.o
+ .log.acc       0x000000000801b500       0x3c bin/crazyflieModel.o
+ .log.baro      0x000000000801b53c       0x3c bin/crazyflieModel.o
+ .log.gyro      0x000000000801b578       0x3c bin/crazyflieModel.o
+ .log.mag       0x000000000801b5b4       0x3c bin/crazyflieModel.o
+ .log.motor     0x000000000801b5f0       0x48 bin/crazyflieModel.o
+ .log.simulink  0x000000000801b638       0x60 bin/crazyflieModel.o
+                0x000000000801b698                _log_stop = .
+                0x000000000801b698                _deckDriver_start = .
  *(.deckDriver)
  *(.deckDriver.*)
  .deckDriver.rzr_deck
-                0x000000000801b768        0x4 bin/rzr.o
-                0x000000000801b768                driver_rzr_deck
+                0x000000000801b698        0x4 bin/rzr.o
+                0x000000000801b698                driver_rzr_deck
  .deckDriver.ledring12_deck
-                0x000000000801b76c        0x4 bin/ledring12.o
-                0x000000000801b76c                driver_ledring12_deck
+                0x000000000801b69c        0x4 bin/ledring12.o
+                0x000000000801b69c                driver_ledring12_deck
  .deckDriver.buzzer_deck
-                0x000000000801b770        0x4 bin/buzzdeck.o
-                0x000000000801b770                driver_buzzer_deck
+                0x000000000801b6a0        0x4 bin/buzzdeck.o
+                0x000000000801b6a0                driver_buzzer_deck
  .deckDriver.gtgps_deck
-                0x000000000801b774        0x4 bin/gtgps.o
-                0x000000000801b774                driver_gtgps_deck
+                0x000000000801b6a4        0x4 bin/gtgps.o
+                0x000000000801b6a4                driver_gtgps_deck
  .deckDriver.dwm1000_deck
-                0x000000000801b778        0x4 bin/dwm1000.o
-                0x000000000801b778                driver_dwm1000_deck
+                0x000000000801b6a8        0x4 bin/dwm1000.o
+                0x000000000801b6a8                driver_dwm1000_deck
  .deckDriver.cppm_deck
-                0x000000000801b77c        0x4 bin/cppmdeck.o
-                0x000000000801b77c                driver_cppm_deck
+                0x000000000801b6ac        0x4 bin/cppmdeck.o
+                0x000000000801b6ac                driver_cppm_deck
  .deckDriver.exptest_deck
-                0x000000000801b780        0x4 bin/exptest.o
-                0x000000000801b780                driver_exptest_deck
-                0x000000000801b784                _deckDriver_stop = .
-                0x000000000801b784                . = ALIGN (0x4)
-                0x000000000801b784                _etext = .
+                0x000000000801b6b0        0x4 bin/exptest.o
+                0x000000000801b6b0                driver_exptest_deck
+                0x000000000801b6b4                _deckDriver_stop = .
+                0x000000000801b6b4                . = ALIGN (0x4)
+                0x000000000801b6b4                _etext = .
 
-.vfp11_veneer   0x000000000801b784        0x0
- .vfp11_veneer  0x000000000801b784        0x0 linker stubs
+.vfp11_veneer   0x000000000801b6b4        0x0
+ .vfp11_veneer  0x000000000801b6b4        0x0 linker stubs
 
-.v4_bx          0x000000000801b784        0x0
- .v4_bx         0x000000000801b784        0x0 linker stubs
+.v4_bx          0x000000000801b6b4        0x0
+ .v4_bx         0x000000000801b6b4        0x0 linker stubs
 
-.iplt           0x000000000801b784        0x0
- .iplt          0x000000000801b784        0x0 bin/list.o
+.iplt           0x000000000801b6b4        0x0
+ .iplt          0x000000000801b6b4        0x0 bin/list.o
 
-.libc           0x000000000801b784        0x8
-                0x000000000801b784                . = ALIGN (0x4)
+.libc           0x000000000801b6b4        0x8
+                0x000000000801b6b4                . = ALIGN (0x4)
  *(.ARM.exidx*)
- .ARM.exidx     0x000000000801b784        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
-                0x000000000801b78c                . = ALIGN (0x4)
-                0x000000000801b78c                _elibc = .
-                0x000000000801b78c                _sidata = _elibc
+ .ARM.exidx     0x000000000801b6b4        0x8 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
+                0x000000000801b6bc                . = ALIGN (0x4)
+                0x000000000801b6bc                _elibc = .
+                0x000000000801b6bc                _sidata = _elibc
 
-.rel.dyn        0x000000000801b78c        0x0
- .rel.iplt      0x000000000801b78c        0x0 bin/list.o
+.rel.dyn        0x000000000801b6bc        0x0
+ .rel.iplt      0x000000000801b6bc        0x0 bin/list.o
 
 .flashpatch     0x0000000000000000        0x0
                 0x0000000000000000                . = ALIGN (0x4)
@@ -16291,7 +16291,7 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
  *(.endflash)
                 0x0000000000000000                . = ALIGN (0x4)
 
-.data           0x0000000020000000      0x7f4 load address 0x000000000801b78c
+.data           0x0000000020000000      0x7f4 load address 0x000000000801b6bc
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                _sdata = .
  *(.data)
@@ -16456,10 +16456,10 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
                 0x00000000200007f4                . = ALIGN (0x4)
                 0x00000000200007f4                _edata = .
 
-.igot.plt       0x00000000200007f4        0x0 load address 0x000000000801bf80
+.igot.plt       0x00000000200007f4        0x0 load address 0x000000000801beb0
  .igot.plt      0x00000000200007f4        0x0 bin/list.o
 
-.bss            0x00000000200007f8     0xace0 load address 0x000000000801bf88
+.bss            0x00000000200007f8     0xacc8 load address 0x000000000801beb8
                 0x00000000200007f8                . = ALIGN (0x4)
                 0x00000000200007f8                _sbss = .
  *(.bss)
@@ -17027,33 +17027,33 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
                 0x000000002000b3ac                buff
                 0x000000002000b410                bi
  *fill*         0x000000002000b411        0x7 
- COMMON         0x000000002000b418       0xc0 bin/crazyflie.o
+ COMMON         0x000000002000b418       0xa8 bin/crazyflie.o
                 0x000000002000b418                rtU
                 0x000000002000b468                rtDW
-                0x000000002000b4a0                rtY
-                0x000000002000b4d8                . = ALIGN (0x4)
-                0x000000002000b4d8                _ebss = .
+                0x000000002000b488                rtY
+                0x000000002000b4c0                . = ALIGN (0x4)
+                0x000000002000b4c0                _ebss = .
 
-.nzds           0x000000002000b4d8        0xc load address 0x0000000008026c68
-                0x000000002000b4d8                . = ALIGN (0x4)
-                0x000000002000b4d8                _snzds = .
+.nzds           0x000000002000b4c0        0xc load address 0x0000000008026b80
+                0x000000002000b4c0                . = ALIGN (0x4)
+                0x000000002000b4c0                _snzds = .
  *(.nzds)
- .nzds          0x000000002000b4d8        0xc bin/cfassert.o
-                0x000000002000b4d8                snapshot
+ .nzds          0x000000002000b4c0        0xc bin/cfassert.o
+                0x000000002000b4c0                snapshot
  *(.nzds.*)
  *(COMMON)
-                0x000000002000b4e4                . = ALIGN (0x4)
-                0x000000002000b4e4                _enzds = .
+                0x000000002000b4cc                . = ALIGN (0x4)
+                0x000000002000b4cc                _enzds = .
                 [!provide]                        PROVIDE (end = _enzds)
                 [!provide]                        PROVIDE (_end = _enzds)
 
-._usrstack      0x000000002000b4e4      0x100 load address 0x0000000008026c74
-                0x000000002000b4e4                . = ALIGN (0x4)
-                0x000000002000b4e4                _susrstack = .
-                0x000000002000b5e4                . = (. + _Minimum_Stack_Size)
- *fill*         0x000000002000b4e4      0x100 
-                0x000000002000b5e4                . = ALIGN (0x4)
-                0x000000002000b5e4                _eusrstack = .
+._usrstack      0x000000002000b4cc      0x100 load address 0x0000000008026b8c
+                0x000000002000b4cc                . = ALIGN (0x4)
+                0x000000002000b4cc                _susrstack = .
+                0x000000002000b5cc                . = (. + _Minimum_Stack_Size)
+ *fill*         0x000000002000b4cc      0x100 
+                0x000000002000b5cc                . = ALIGN (0x4)
+                0x000000002000b5cc                _eusrstack = .
 
 .b1text
  *(.b1text)
@@ -17079,8 +17079,8 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
  *(.eb3text)
  *(.eb3rodata)
  *(.eb3rodata*)
-                0x000000002000b5e4                __exidx_start = .
-                0x000000002000b5e4                __exidx_end = .
+                0x000000002000b5cc                __exidx_start = .
+                0x000000002000b5cc                __exidx_end = .
 
 /DISCARD/
  libc.a(*)
@@ -17788,7 +17788,7 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000    0x660d5
+.debug_info     0x0000000000000000    0x66057
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0xac2 bin/list.o
  .debug_info    0x0000000000000ac2     0x32cb bin/tasks.o
@@ -17893,11 +17893,11 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
  .debug_info    0x0000000000060024      0xc79 bin/cppmdeck.o
  .debug_info    0x0000000000060c9d     0x1076 bin/exptest.o
  .debug_info    0x0000000000061d13     0x14ef bin/configblockeeprom.o
- .debug_info    0x0000000000063202      0xc5a bin/crazyflie.o
- .debug_info    0x0000000000063e5c     0x179f bin/crazyflieModel.o
- .debug_info    0x00000000000655fb      0xada bin/crazyflie_data.o
+ .debug_info    0x0000000000063202      0xc26 bin/crazyflie.o
+ .debug_info    0x0000000000063e28     0x177a bin/crazyflieModel.o
+ .debug_info    0x00000000000655a2      0xab5 bin/crazyflie_data.o
 
-.debug_abbrev   0x0000000000000000    0x115ef
+.debug_abbrev   0x0000000000000000    0x115c8
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x21c bin/list.o
  .debug_abbrev  0x000000000000021c      0x4bd bin/tasks.o
@@ -18002,11 +18002,11 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
  .debug_abbrev  0x00000000000105ab      0x25d bin/cppmdeck.o
  .debug_abbrev  0x0000000000010808      0x302 bin/exptest.o
  .debug_abbrev  0x0000000000010b0a      0x34d bin/configblockeeprom.o
- .debug_abbrev  0x0000000000010e57      0x2a6 bin/crazyflie.o
- .debug_abbrev  0x00000000000110fd      0x307 bin/crazyflieModel.o
- .debug_abbrev  0x0000000000011404      0x1eb bin/crazyflie_data.o
+ .debug_abbrev  0x0000000000010e57      0x299 bin/crazyflie.o
+ .debug_abbrev  0x00000000000110f0      0x2fa bin/crazyflieModel.o
+ .debug_abbrev  0x00000000000113ea      0x1de bin/crazyflie_data.o
 
-.debug_line     0x0000000000000000    0x29cb4
+.debug_line     0x0000000000000000    0x29ca6
  *(.debug_line)
  .debug_line    0x0000000000000000      0x3f6 bin/list.o
  .debug_line    0x00000000000003f6      0xd7e bin/tasks.o
@@ -18111,9 +18111,9 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
  .debug_line    0x0000000000027a0a      0x657 bin/cppmdeck.o
  .debug_line    0x0000000000028061      0x73a bin/exptest.o
  .debug_line    0x000000000002879b      0x87c bin/configblockeeprom.o
- .debug_line    0x0000000000029017      0x2b9 bin/crazyflie.o
- .debug_line    0x00000000000292d0      0x80e bin/crazyflieModel.o
- .debug_line    0x0000000000029ade      0x1d6 bin/crazyflie_data.o
+ .debug_line    0x0000000000029017      0x2ab bin/crazyflie.o
+ .debug_line    0x00000000000292c2      0x80e bin/crazyflieModel.o
+ .debug_line    0x0000000000029ad0      0x1d6 bin/crazyflie_data.o
 
 .debug_frame    0x0000000000000000     0x90cc
  *(.debug_frame)
@@ -18277,7 +18277,7 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
  .debug_frame   0x000000000000900c       0x84 /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-strtol.o)
  .debug_frame   0x0000000000009090       0x3c /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-wctomb_r.o)
 
-.debug_str      0x0000000000000000    0x85fd5
+.debug_str      0x0000000000000000    0x85f76
  *(.debug_str)
  .debug_str     0x0000000000000000     0xa9f5 bin/list.o
                                        0xac7b (size before relaxing)
@@ -18485,14 +18485,14 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
                                       0x62980 (size before relaxing)
  .debug_str     0x00000000000849e3     0x11ee bin/configblockeeprom.o
                                       0x678cc (size before relaxing)
- .debug_str     0x0000000000085bd1      0x39f bin/crazyflie.o
-                                       0x6ce2 (size before relaxing)
- .debug_str     0x0000000000085f70       0x44 bin/crazyflieModel.o
-                                      0x670c4 (size before relaxing)
- .debug_str     0x0000000000085fb4       0x21 bin/crazyflie_data.o
-                                       0x6c6a (size before relaxing)
+ .debug_str     0x0000000000085bd1      0x340 bin/crazyflie.o
+                                       0x6c83 (size before relaxing)
+ .debug_str     0x0000000000085f11       0x44 bin/crazyflieModel.o
+                                      0x67065 (size before relaxing)
+ .debug_str     0x0000000000085f55       0x21 bin/crazyflie_data.o
+                                       0x6c0b (size before relaxing)
 
-.debug_loc      0x0000000000000000    0x17646
+.debug_loc      0x0000000000000000    0x17607
  *(.debug_loc)
  .debug_loc     0x0000000000000000       0x7c bin/list.o
  .debug_loc     0x000000000000007c     0x1750 bin/tasks.o
@@ -18590,8 +18590,8 @@ LOAD /home/bitcraze/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/
  .debug_loc     0x0000000000017059       0x21 bin/cppmdeck.o
  .debug_loc     0x000000000001707a       0x8f bin/exptest.o
  .debug_loc     0x0000000000017109      0x30b bin/configblockeeprom.o
- .debug_loc     0x0000000000017414      0x1b7 bin/crazyflie.o
- .debug_loc     0x00000000000175cb       0x7b bin/crazyflieModel.o
+ .debug_loc     0x0000000000017414      0x178 bin/crazyflie.o
+ .debug_loc     0x000000000001758c       0x7b bin/crazyflieModel.o
 
 .debug_macinfo
  *(.debug_macinfo)

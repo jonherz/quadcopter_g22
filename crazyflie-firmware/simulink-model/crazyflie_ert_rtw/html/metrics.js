@@ -3,7 +3,7 @@ function CodeMetrics() {
 	 this.metricsArray.var = new Array();
 	 this.metricsArray.fcn = new Array();
 	 this.metricsArray.var["rtDW"] = {file: "/Users/Jonas/Documents/Master/Model-based Development/Bitcraze Shared Folder/quadcopter_g22/crazyflie-firmware/simulink-model/crazyflie_ert_rtw/crazyflie.c",
-	size: 56};
+	size: 32};
 	 this.metricsArray.var["rtU"] = {file: "/Users/Jonas/Documents/Master/Model-based Development/Bitcraze Shared Folder/quadcopter_g22/crazyflie-firmware/simulink-model/crazyflie_ert_rtw/crazyflie.c",
 	size: 80};
 	 this.metricsArray.var["rtY"] = {file: "/Users/Jonas/Documents/Master/Model-based Development/Bitcraze Shared Folder/quadcopter_g22/crazyflie-firmware/simulink-model/crazyflie_ert_rtw/crazyflie.c",
@@ -15,8 +15,8 @@ function CodeMetrics() {
 	stack: 0,
 	stackTotal: 0};
 	 this.metricsArray.fcn["crazyflie_step"] = {file: "/Users/Jonas/Documents/Master/Model-based Development/Bitcraze Shared Folder/quadcopter_g22/crazyflie-firmware/simulink-model/crazyflie_ert_rtw/crazyflie.c",
-	stack: 152,
-	stackTotal: 152};
+	stack: 120,
+	stackTotal: 120};
 	 this.metricsArray.fcn["crazyflie_terminate"] = {file: "/Users/Jonas/Documents/Master/Model-based Development/Bitcraze Shared Folder/quadcopter_g22/crazyflie-firmware/simulink-model/crazyflie_ert_rtw/crazyflie.c",
 	stack: 0,
 	stackTotal: 0};
@@ -33,6 +33,6 @@ function CodeMetrics() {
 			 data.type = "var";
 		 }
 	 return data; }; 
-	 this.codeMetricsSummary = '<a href="crazyflie_metrics.html">Global Memory: 192(bytes) Maximum Stack: 152(bytes)</a>';
+	 this.codeMetricsSummary = '<a href="crazyflie_metrics.html">Global Memory: 168(bytes) Maximum Stack: 120(bytes)</a>';
 	}
 CodeMetrics.instance = new CodeMetrics();

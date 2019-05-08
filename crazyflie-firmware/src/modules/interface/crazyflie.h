@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'crazyflie'.
  *
- * Model version                  : 1.193
+ * Model version                  : 1.195
  * Simulink Coder version         : 9.0 (R2018b) 24-May-2018
- * C/C++ source code generated on : Fri May  3 13:35:33 2019
+ * C/C++ source code generated on : Wed May  8 14:41:28 2019
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -31,11 +31,8 @@
 
 /* Block signals and states (default storage) for system '<Root>' */
 typedef struct {
-  real_T DiscreteTimeIntegrator_DSTATE;/* '<S1>/Discrete-Time Integrator' */
-  real_T DiscreteTimeIntegrator1_DSTATE;/* '<S1>/Discrete-Time Integrator1' */
-  real_T DiscreteTimeIntegrator2_DSTATE;/* '<S1>/Discrete-Time Integrator2' */
-  real_T DiscreteTimeIntegrator_DSTATE_h;/* '<Root>/Discrete-Time Integrator' */
-  real_T DiscreteTimeIntegrator1_DSTAT_i;/* '<Root>/Discrete-Time Integrator1' */
+  real_T DiscreteTimeIntegrator_DSTATE;/* '<Root>/Discrete-Time Integrator' */
+  real_T DiscreteTimeIntegrator1_DSTATE;/* '<Root>/Discrete-Time Integrator1' */
   real_T Memory_PreviousInput;         /* '<Root>/Memory' */
   real_T Memory1_PreviousInput;        /* '<Root>/Memory1' */
 } DW;
@@ -45,7 +42,7 @@ typedef struct {
   /* Expression: -KLQR
    * Referenced by: '<S1>/LQR'
    */
-  real_T LQR_Gain[32];
+  real_T LQR_Gain[20];
 } ConstP;
 
 /* External inputs (root inport signals with default storage) */
