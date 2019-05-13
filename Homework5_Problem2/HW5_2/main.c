@@ -113,19 +113,14 @@ void goWest(int batId)
 void batFromNorth(void *pvParameters)
 {
 	int batId = *(int *)pvParameters;
-	int a = 0;
-	while (1) // Repeat forever
-	{
-	if (xSemaphoreTake(NorthMutex,10) && a == 0){		
+	
+	while (1) {// Repeat forever
+		
 	goSouth(batId); 
-        a = 1;
-	xSemaphoreGive(NorthMutex);	
-	}
-	if (xSemaphoreTake(NorthMutex,10) && a == 1){	
+       	
+	
 	goNorth(batId);
- 	a = 0;
-	xSemaphoreGive(NorthMutex);
-	}
+ 	
 	}
 }
 
