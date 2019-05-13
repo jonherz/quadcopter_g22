@@ -17,6 +17,12 @@ SemaphoreHandle_t SouthMutex;
 SemaphoreHandle_t EastMutex;
 SemaphoreHandle_t WestMutex;
 
+SemaphoreHandle_t FlagNorth;
+SemaphoreHandle_t FlagSouth;
+SemaphoreHandle_t FlagWest;
+SemaphoreHandle_t FlagEast;
+
+
 int *batIds;
 
 volatile int counter = 0;
@@ -33,7 +39,9 @@ void goSouth(int batId)
 	
 	vPrintf("BAT %d from North arrives at crossing\n", batId);
 
-	if (xSemaphoreTake(semMutex,10000)){
+	
+	xSemaphoreGive(FlagNorth);
+	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagWest) > 0){
 	vPrintf("BAT %d from North enters crossing\n", batId);
 
 	vTaskDelay(crossingDelay);   
@@ -41,6 +49,7 @@ void goSouth(int batId)
 	vPrintf("BAT %d from North leaving crossing\n", batId);    
 	xSemaphoreGive(semMutex);
 	vTaskDelay(waitingToArriveDelay);
+	xSemaphoreTake(FlagNorth,1000);
 	}
 }
 
@@ -55,7 +64,9 @@ void goNorth(int batId)
 
 	vPrintf("BAT %d from South arrives at crossing\n", batId);
 
-	if (xSemaphoreTake(semMutex,10000)){
+	//FlagSouth = xSemaphoreCreateCounting( 10, 0 );
+ 	xSemaphoreGive(FlagSouth);
+	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagEast) > 0){
 	vPrintf("BAT %d from South enters crossing\n", batId);
 
 	vTaskDelay(crossingDelay);   
@@ -63,6 +74,7 @@ void goNorth(int batId)
 	vPrintf("BAT %d from South leaving crossing\n", batId);    
 	xSemaphoreGive(semMutex);
 	vTaskDelay(waitingToArriveDelay);
+	xSemaphoreTake(FlagSouth,1000);
 	}
 }
 
@@ -77,7 +89,9 @@ void goEast(int batId)
 
 	vPrintf("BAT %d from West arrives at crossing\n", batId);
 
-	if (xSemaphoreTake(semMutex,10000)){
+	//FlagWest = xSemaphoreCreateCounting( 10, 0 );
+ 	xSemaphoreGive(FlagWest);
+	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagSouth) > 0){
 	vPrintf("BAT %d from West enters crossing\n", batId);
 
 	vTaskDelay(crossingDelay);   
@@ -85,6 +99,7 @@ void goEast(int batId)
 	vPrintf("BAT %d from West leaving crossing\n", batId);    
 	xSemaphoreGive(semMutex);
 	vTaskDelay(waitingToArriveDelay);
+	xSemaphoreTake(FlagWest,1000);
 	}
 }
 
@@ -99,7 +114,9 @@ void goWest(int batId)
 
 	vPrintf("BAT %d from East arrives at crossing\n", batId);
 	
-	if (xSemaphoreTake(semMutex,10000)){
+	//FlagEast = xSemaphoreCreateCounting( 10, 0 );
+	xSemaphoreGive(FlagEast);
+	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagNorth) > 0){
 	vPrintf("BAT %d from East enters crossing\n", batId);
 
 	vTaskDelay(crossingDelay);   
@@ -107,6 +124,7 @@ void goWest(int batId)
 	vPrintf("BAT %d from East leaving crossing\n", batId);    
 	xSemaphoreGive(semMutex);
 	vTaskDelay(waitingToArriveDelay);
+	xSemaphoreTake(FlagEast,1000);
 	}
 }
 
@@ -114,11 +132,10 @@ void batFromNorth(void *pvParameters)
 {
 	int batId = *(int *)pvParameters;
 	
-	while (1) {// Repeat forever
-		
-	goSouth(batId); 
-       	
+	while (1) // Repeat forever
+	{
 	
+	goSouth(batId); 	
 	goNorth(batId);
  	
 	}
@@ -127,59 +144,35 @@ void batFromNorth(void *pvParameters)
 void batFromSouth(void *pvParameters)
 {
 	int batId = *(int *)pvParameters;
-	int b = 0;
+	
 	while (1)
 	{
-	if (xSemaphoreTake(SouthMutex,10) && b==0){
-	goNorth(batId); 
-	b = 1; 
-	xSemaphoreGive(SouthMutex);	
- 	}
 
-	if (xSemaphoreTake(SouthMutex,10) && b==1){
+	goNorth(batId); 
 	goSouth(batId);
-	b = 0;	
-	xSemaphoreGive(SouthMutex);
-	}
+	
 	}
 }
 
 void batFromEast(void *pvParameters)
 {
 	int batId = *(int *)pvParameters;
-	int c=0;
+	
 	while (1)
 	{
-	if (xSemaphoreTake(EastMutex,10) && c==0){
-	goWest(batId); 
-	c = 1;
-        xSemaphoreGive(EastMutex);
-        }
-	if (xSemaphoreTake(EastMutex,10) && c==1){
-	goEast(batId);
-	c =0;
-	xSemaphoreGive(EastMutex);
-	}
+		goWest(batId); 
+		goEast(batId);
 	}
 }
 
 void batFromWest(void *pvParameters)
 {	
 	int batId = *(int *)pvParameters;
-	int d = 0;
+	
 	while (1)
 	{
-	if (xSemaphoreTake(WestMutex,10) && d==0){
-        goEast(batId);
-	d = 1; 
-        xSemaphoreGive(WestMutex);
-        }
-        
-        if (xSemaphoreTake(WestMutex,10) && d==1){
-        goWest(batId);
-	d = 0;
-	xSemaphoreGive(WestMutex);
-        }
+		goEast(batId);
+		goWest(batId);
 	}
 }
 
@@ -193,6 +186,12 @@ int main(int argc, char **argv)
 	SouthMutex = xSemaphoreCreateMutex();
 	EastMutex = xSemaphoreCreateMutex();
 	WestMutex = xSemaphoreCreateMutex();
+
+        FlagEast = xSemaphoreCreateCounting(10,0);
+	FlagNorth = xSemaphoreCreateCounting(10,0);
+	FlagSouth = xSemaphoreCreateCounting(10,0); 
+	FlagWest = xSemaphoreCreateCounting(10,0);
+
 	if (argc < 2)
 	{
 		vPrintf("Argument missing, specify sequence of arrivals. Example: ./batman nsewwewn\n");
@@ -252,4 +251,3 @@ int main(int argc, char **argv)
 	free(batTaskHandles); // Return memory for the task handles
 	return 0;
 }
-
