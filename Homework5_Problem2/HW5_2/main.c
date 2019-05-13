@@ -41,7 +41,9 @@ void goSouth(int batId)
 
 	
 	xSemaphoreGive(FlagNorth);
-	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagWest) > 0){
+	while (1)
+	{	
+		if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagWest) == 0){
 	vPrintf("BAT %d from North enters crossing\n", batId);
 
 	vTaskDelay(crossingDelay);   
@@ -50,6 +52,8 @@ void goSouth(int batId)
 	xSemaphoreGive(semMutex);
 	vTaskDelay(waitingToArriveDelay);
 	xSemaphoreTake(FlagNorth,1000);
+	break;
+	}
 	}
 }
 
@@ -66,7 +70,9 @@ void goNorth(int batId)
 
 	//FlagSouth = xSemaphoreCreateCounting( 10, 0 );
  	xSemaphoreGive(FlagSouth);
-	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagEast) > 0){
+	while (1)
+	{	
+	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagEast) == 0){
 	vPrintf("BAT %d from South enters crossing\n", batId);
 
 	vTaskDelay(crossingDelay);   
@@ -75,6 +81,8 @@ void goNorth(int batId)
 	xSemaphoreGive(semMutex);
 	vTaskDelay(waitingToArriveDelay);
 	xSemaphoreTake(FlagSouth,1000);
+	break;
+	}
 	}
 }
 
@@ -91,7 +99,9 @@ void goEast(int batId)
 
 	//FlagWest = xSemaphoreCreateCounting( 10, 0 );
  	xSemaphoreGive(FlagWest);
-	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagSouth) > 0){
+	while (1)
+	{	
+	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagSouth) == 0){
 	vPrintf("BAT %d from West enters crossing\n", batId);
 
 	vTaskDelay(crossingDelay);   
@@ -100,6 +110,8 @@ void goEast(int batId)
 	xSemaphoreGive(semMutex);
 	vTaskDelay(waitingToArriveDelay);
 	xSemaphoreTake(FlagWest,1000);
+	break;
+	}
 	}
 }
 
@@ -116,7 +128,9 @@ void goWest(int batId)
 	
 	//FlagEast = xSemaphoreCreateCounting( 10, 0 );
 	xSemaphoreGive(FlagEast);
-	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagNorth) > 0){
+	while (1)
+	{	
+	if (xSemaphoreTake(semMutex,10000) && uxSemaphoreGetCount(FlagNorth) == 0){
 	vPrintf("BAT %d from East enters crossing\n", batId);
 
 	vTaskDelay(crossingDelay);   
@@ -125,6 +139,8 @@ void goWest(int batId)
 	xSemaphoreGive(semMutex);
 	vTaskDelay(waitingToArriveDelay);
 	xSemaphoreTake(FlagEast,1000);
+	break;
+	}
 	}
 }
 
