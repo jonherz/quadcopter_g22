@@ -45,12 +45,12 @@ sysd = c2d(sysc,Ts);
 
 % Calculate LQR Control Gain
 % Set LQR weighting matrices.
-ang_max = 15;
+ang_max = 25;
 ang12_vel_max = 200;
 ang3_vel_max = 180;
 
-Q = diag([10^8/ang_max^2 10^8/ang_max^2 10^(-1)/ang12_vel_max^2 10^(-1)/ang12_vel_max^2 10^8/ang3_vel_max^2]);
-R = 0.1*eye(4);
+Q = diag([10^6/ang_max^2 10^6/ang_max^8 10^(2)/ang12_vel_max^2 10^(2)/ang12_vel_max^2 10^6/ang3_vel_max^2]);
+R = 1*eye(4);
 
 % Calculate control gain using LQR optimization.
 KLQR = dlqr(sysd.A,sysd.B,Q,R);

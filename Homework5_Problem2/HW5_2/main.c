@@ -19,8 +19,6 @@ SemaphoreHandle_t FlagSouth;
 SemaphoreHandle_t FlagWest;
 SemaphoreHandle_t FlagEast;
 
-SemaphoreHandle_t Deadlock;
-
 int *batIds;
 
 volatile int counter = 0;
@@ -37,21 +35,22 @@ void goSouth(int batId)
 	vTaskDelay(waitingToArriveDelay);   
 
 	vPrintf("BAT %d from North arrives at crossing\n", batId);
-    
-	xSemaphoreTake(Deadlock,1000);
-	
+    	
 	xSemaphoreGive(FlagNorth);
 
-	while (uxSemaphoreGetCount(FlagWest) != 0)
+	/*while (uxSemaphoreGetCount(FlagWest) != 0)
 	{
 		if(uxSemaphoreGetCount(FlagWest) == 0)
 		{
 			break; 
 		}
 		
-	}
+	}*/
 
-	if (xSemaphoreTake(semMutex, 10000))
+	while (1)
+	{
+		vPrintf("North waiting: FlagSouth:%i,  FlagWest: %i,  FlagNorth: %i,  FlagEast: %i\n", uxSemaphoreGetCount(FlagSouth), uxSemaphoreGetCount(FlagWest), uxSemaphoreGetCount(FlagNorth), uxSemaphoreGetCount(FlagEast));
+	if (xSemaphoreTake(semMutex, 10000) && (uxSemaphoreGetCount(FlagWest) == 0))// || (uxSemaphoreGetCount(FlagWest) != 0 && uxSemaphoreGetCount(FlagSouth) != 0 && uxSemaphoreGetCount(FlagEast) != 0)))
 	{	xSemaphoreTake(FlagNorth, 1000);
 		vPrintf("BAT %d from North enters crossing++++\n", batId);
 
@@ -60,10 +59,11 @@ void goSouth(int batId)
 		vPrintf("BAT %d from North leaving crossing----\n", batId);    
 		xSemaphoreGive(semMutex);
 		
-		vTaskDelay(waitingToArriveDelay);	
-		xSemaphoreGive(Deadlock);
+		vTaskDelay(waitingToArriveDelay);
+		break;	
 	}
-	
+
+	}
 }
 
 void goNorth(int batId)
@@ -79,21 +79,21 @@ void goNorth(int batId)
 
 	vPrintf("BAT %d from South arrives at crossing\n", batId);
     
-	xSemaphoreTake(Deadlock,1000);
-
 	xSemaphoreGive(FlagSouth);
 
-	while (uxSemaphoreGetCount(FlagEast) != 0)
+	/*while (uxSemaphoreGetCount(FlagEast) != 0)
 	{
 		if(uxSemaphoreGetCount(FlagEast) == 0)
 		{
 			break; 
 		}
 		
-	}
+	}*/
 	
-
-	if (xSemaphoreTake(semMutex, 10000))
+	while (1)
+	{
+		vPrintf("South waiting: FlagSouth:%i,  FlagWest: %i,  FlagNorth: %i,  FlagEast: %i\n", uxSemaphoreGetCount(FlagSouth), uxSemaphoreGetCount(FlagWest), uxSemaphoreGetCount(FlagNorth), uxSemaphoreGetCount(FlagEast));
+	if (xSemaphoreTake(semMutex, 10000) && uxSemaphoreGetCount(FlagEast) == 0)
 	{	xSemaphoreTake(FlagSouth, 1000);
 		vPrintf("BAT %d from South enters crossing++++\n", batId);
 
@@ -103,9 +103,9 @@ void goNorth(int batId)
 		xSemaphoreGive(semMutex);
 		
 		vTaskDelay(waitingToArriveDelay);	
-		xSemaphoreGive(Deadlock);
+		break;	
 	}
-	
+	}
 }
 
 void goEast(int batId)
@@ -121,22 +121,22 @@ void goEast(int batId)
 
 	vPrintf("BAT %d from West arrives at crossing\n", batId);
 
-	xSemaphoreTake(Deadlock,1000);
-
 	xSemaphoreGive(FlagWest);
 
 
-	while (uxSemaphoreGetCount(FlagSouth) != 0)
+	/*while (uxSemaphoreGetCount(FlagSouth) != 0)
 	{
 		if(uxSemaphoreGetCount(FlagSouth) == 0)
 		{
 			break; 
 		}
 		
-	}	
+	}	*/
 
-
-	if (xSemaphoreTake(semMutex, 10000))
+	while (1)
+	{
+		vPrintf("West waiting: FlagSouth:%i,  FlagWest: %i,  FlagNorth: %i,  FlagEast: %i\n", uxSemaphoreGetCount(FlagSouth), uxSemaphoreGetCount(FlagWest), uxSemaphoreGetCount(FlagNorth), uxSemaphoreGetCount(FlagEast));
+	if (xSemaphoreTake(semMutex, 10000) && uxSemaphoreGetCount(FlagSouth) == 0)
 	{	xSemaphoreTake(FlagWest, 1000);
 		vPrintf("BAT %d from West enters crossing++++\n", batId);
 
@@ -146,9 +146,9 @@ void goEast(int batId)
 		xSemaphoreGive(semMutex);
 		
 		vTaskDelay(waitingToArriveDelay);	
-		xSemaphoreGive(Deadlock);
+		break;	
 	}
-	
+	}
 }
 
 void goWest(int batId)
@@ -164,21 +164,21 @@ void goWest(int batId)
 
 	vPrintf("BAT %d from East arrives at crossing\n", batId);
 	
-	xSemaphoreTake(Deadlock,1000);
-
 	xSemaphoreGive(FlagEast);
 	
-	while (uxSemaphoreGetCount(FlagNorth) != 0)
+	/*while (uxSemaphoreGetCount(FlagNorth) != 0)
 	{
 		if(uxSemaphoreGetCount(FlagNorth) == 0)
 		{
 			break; 
 		}
 		
-	}		
+	}	*/	
 
-
-	if (xSemaphoreTake(semMutex, 10000))
+	while (1)
+	{
+		vPrintf("East waiting: FlagSouth:%i,  FlagWest: %i,  FlagNorth: %i,  FlagEast: %i\n", uxSemaphoreGetCount(FlagSouth), uxSemaphoreGetCount(FlagWest), uxSemaphoreGetCount(FlagNorth), uxSemaphoreGetCount(FlagEast));
+	if (xSemaphoreTake(semMutex, 10000) && uxSemaphoreGetCount(FlagNorth) == 0)
 	{	
 		vPrintf("BAT %d from East enters crossing++++\n", batId);
 
@@ -187,10 +187,10 @@ void goWest(int batId)
 		vPrintf("BAT %d from East leaving crossing----\n", batId);    
 		xSemaphoreGive(semMutex);
 		xSemaphoreTake(FlagEast, 1000);
-		vTaskDelay(waitingToArriveDelay);	
-		xSemaphoreGive(Deadlock);
+		vTaskDelay(waitingToArriveDelay);
+		break;	
 	}
-	
+	}
 }
 
 void batFromNorth(void *pvParameters)
@@ -258,8 +258,6 @@ int main(int argc, char **argv)
 	FlagNorth = xSemaphoreCreateCounting(numberOfBats,0);
 	FlagSouth = xSemaphoreCreateCounting(numberOfBats,0); 
 	FlagWest = xSemaphoreCreateCounting(numberOfBats,0);
-
-	Deadlock = xSemaphoreCreateCounting(3,0);
 
 	batTaskHandles = malloc(sizeof(xTaskHandle) * numberOfBats); // Allocate memory for the task handles
 	batIds = malloc(sizeof(int) * numberOfBats); // Allocate memory for the task ids
