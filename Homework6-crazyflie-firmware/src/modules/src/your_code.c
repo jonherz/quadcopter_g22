@@ -40,13 +40,11 @@ void yourCodeInit(void)
 	//xTaskCreate(setpointgen, "setpointgen", configMINIMAL_STACK_SIZE, NULL, 3, NULL);  
 	//xTaskCreate(LQcontrol, "LQcontrol", configMINIMAL_STACK_SIZE, NULL, 2, NULL);  
 
- 
-}
+ }
 
 static void test_task1(void)
 {
   uint16_t value_1;
-
   uint32_t lastWakeTime;
   sensorData_t sensorData;
 
@@ -70,7 +68,6 @@ static void test_task1(void)
 static void test_task2(void)
 {
   uint16_t value_2;
-
   uint32_t lastWakeTime;
   sensorData_t sensorData;
 
@@ -90,6 +87,60 @@ static void test_task2(void)
     tick++;
   }
 }
+
+
+
+
+void comp_filter(void)
+{
+    int gamma = 0.95;
+    int     h = 0.01;
+    float fx, fy, fz, ax, ay, az, theta, phi;
+    
+    lastWakeTime = xTaskGetTickCount();
+    while(!sensorsAreCalibrated()) {
+    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
+   }
+
+    sensorData_t sensorData;
+    
+    
+    while(1){
+    sensorsAcquire(&sensorData, tick); // Read sensors at full rate (1000Hz)
+
+    ax = sensorData.acc.ax;
+    ay = sensorData.acc.ay;
+    az = sensorData.acc.az;
+
+    if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
+    {
+        fx = ax*invSqrt(ax * ax + ay * ay + az * az);
+        fy = ax*invSqrt(ax * ax + ay * ay + az * az);
+        fz = az*invSqrt(ax * ax + ay * ay + az * az);
+
+        theta = (180/pi)*atan2(-fx,sqrt(fy*fy + fz*fz));
+        phi = (180/pi)*atan2(fy,fz);
+
+        // How do we do with the states? 
+
+        // Should we maybe just create new variables for the states?
+
+        // Then we would have to initilize these somehow, maybe with zero since we
+        // most likely will start with zero pitch and roll?
+
+        // If we continue like before with the state pointer, we need to find the command 
+        // that gets us state data, i.e the state version of sensorsAcquire       
+        (*state).attitude.roll = (1-gamma)*theta + gamma*((*state).attitude.roll + h*sensorData.gyro.y);
+        (*state).attitude.pitch = (1-gamma)*phi + gamma*((*state).attitude.pitch + h*sensorData.gyro.x);
+    }
+    
+    tick++;
+  }
+}
+
+
+
+
 
 
 
