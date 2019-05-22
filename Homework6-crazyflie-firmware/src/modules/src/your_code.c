@@ -95,7 +95,7 @@ void comp_filter(void)
 {
     int gamma = 0.95;
     int     h = 0.01;
-    float fx, fy, fz, ax, ay, az, theta, phi;
+    float fx, fy, fz, ax, ay, az, thetaNoob, phiNoob, thetaDank, phiDank;
     
     lastWakeTime = xTaskGetTickCount();
     while(!sensorsAreCalibrated()) {
@@ -108,9 +108,9 @@ void comp_filter(void)
     while(1){
     sensorsAcquire(&sensorData, tick); // Read sensors at full rate (1000Hz)
 
-    ax = sensorData.acc.ax;
-    ay = sensorData.acc.ay;
-    az = sensorData.acc.az;
+    ax = sensorData.acc.x;
+    ay = sensorData.acc.y;
+    az = sensorData.acc.z;
 
     if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
     {
@@ -118,8 +118,8 @@ void comp_filter(void)
         fy = ax*invSqrt(ax * ax + ay * ay + az * az);
         fz = az*invSqrt(ax * ax + ay * ay + az * az);
 
-        theta = (180/pi)*atan2(-fx,sqrt(fy*fy + fz*fz));
-        phi = (180/pi)*atan2(fy,fz);
+        thetaNoob = (180/pi)*atan2(-fx,sqrt(fy*fy + fz*fz));
+        phiMoob = (180/pi)*atan2(fy,fz);
 
         // How do we do with the states? 
 
@@ -130,8 +130,8 @@ void comp_filter(void)
 
         // If we continue like before with the state pointer, we need to find the command 
         // that gets us state data, i.e the state version of sensorsAcquire       
-        (*state).attitude.roll = (1-gamma)*theta + gamma*((*state).attitude.roll + h*sensorData.gyro.y);
-        (*state).attitude.pitch = (1-gamma)*phi + gamma*((*state).attitude.pitch + h*sensorData.gyro.x);
+        thetaDank = (1-gamma)*theta + gamma*thetaNoob + h*sensorData.gyro.y);
+        phiDank = (1-gamma)*phi + gamma*phiNoob + h*sensorData.gyro.x);
     }
     
     tick++;
