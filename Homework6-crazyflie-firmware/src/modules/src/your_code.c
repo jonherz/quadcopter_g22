@@ -32,7 +32,10 @@ void yourCodeInit(void)
               (3 * configMINIMAL_STACK_SIZE), NULL, 1, NULL);
   xTaskCreate(test_task2, "STABILIZER_TASK_NAME2",
               (3 * configMINIMAL_STACK_SIZE), NULL, 2, NULL);
-        
+   xTaskCreate(test_task2, "STABILIZER_TASK_NAME2",
+              (3 * configMINIMAL_STACK_SIZE), NULL, 3, NULL);
+
+
   //xTaskCreate(comp_filter, "comp_filter", configMINIMAL_STACK_SIZE, NULL, 1, NULL);  
 	//xTaskCreate(setpointgen, "setpointgen", configMINIMAL_STACK_SIZE, NULL, 3, NULL);  
 	//xTaskCreate(LQcontrol, "LQcontrol", configMINIMAL_STACK_SIZE, NULL, 2, NULL);  
