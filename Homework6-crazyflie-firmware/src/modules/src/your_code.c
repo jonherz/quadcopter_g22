@@ -95,8 +95,11 @@ void comp_filter(void)
 {
     int gamma = 0.95;
     int     h = 0.01;
-    float fx, fy, fz, ax, ay, az, thetaNoob, phiNoob, thetaDank, phiDank;
+    float fx, fy, fz, ax, ay, az, thetaNoob, phiNoob;
     
+    int *thetaDank;
+    int *phiDank;
+
     lastWakeTime = xTaskGetTickCount();
     while(!sensorsAreCalibrated()) {
     vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
@@ -119,19 +122,14 @@ void comp_filter(void)
         fz = az*invSqrt(ax * ax + ay * ay + az * az);
 
         thetaNoob = (180/pi)*atan2(-fx,sqrt(fy*fy + fz*fz));
-        phiMoob = (180/pi)*atan2(fy,fz);
-
-        // How do we do with the states? 
-
-        // Should we maybe just create new variables for the states?
-
-        // Then we would have to initilize these somehow, maybe with zero since we
-        // most likely will start with zero pitch and roll?
-
-        // If we continue like before with the state pointer, we need to find the command 
-        // that gets us state data, i.e the state version of sensorsAcquire       
-        thetaDank = (1-gamma)*theta + gamma*thetaNoob + h*sensorData.gyro.y);
-        phiDank = (1-gamma)*phi + gamma*phiNoob + h*sensorData.gyro.x);
+        phiNoob = (180/pi)*atan2(fy,fz);
+        
+             
+        *thetaDank = (1-gamma)*thetaNoob + gamma*thetaNoob + h*sensorData.gyro.y);
+        *phiDank = (1-gamma)*phiNoob + gamma*phiNoob + h*sensorData.gyro.x);
+        // We need to return these values, maybe make thetaDank and phiDank into
+        // Pointers and then "&" to get them inside the controller. 
+        
     }
     
     tick++;
