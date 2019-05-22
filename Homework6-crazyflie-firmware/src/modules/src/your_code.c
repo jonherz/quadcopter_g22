@@ -16,36 +16,106 @@
  * which is usually handles the control of the crazyflie.
  *
  ***/
-static void test_task(uint32_t tick);
+
+static void test_task1(void);
+static void test_task2(void);
+
+uint32_t tick;
+
 
 void yourCodeInit(void)
 {
-  uint32_t tick = 1;
-  xTaskCreate(test_task, "STABILIZER_TASK_NAME",
-              STABILIZER_TASK_STACKSIZE, NULL, 1, NULL);
-  tick++;
+
+  tick = 1;
+
+  xTaskCreate(test_task1, "STABILIZER_TASK_NAME1",
+              (3 * configMINIMAL_STACK_SIZE), NULL, 1, NULL);
+  xTaskCreate(test_task2, "STABILIZER_TASK_NAME2",
+              (3 * configMINIMAL_STACK_SIZE), NULL, 2, NULL);
+        
+  //xTaskCreate(comp_filter, "comp_filter", configMINIMAL_STACK_SIZE, NULL, 1, NULL);  
+	//xTaskCreate(setpointgen, "setpointgen", configMINIMAL_STACK_SIZE, NULL, 3, NULL);  
+	//xTaskCreate(LQcontrol, "LQcontrol", configMINIMAL_STACK_SIZE, NULL, 2, NULL);  
+
+ 
 }
 
-static void test_task(uint32_t tick)
+static void test_task1(void)
 {
   uint16_t value_1;
+
   uint32_t lastWakeTime;
-  sensordata_t sensorData;
+  sensorData_t sensorData;
 
-
-
+  lastWakeTime = xTaskGetTickCount();
+  while(!sensorsAreCalibrated()) {
+    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
+  }
+  
+  
   while(1)
   { 
-    sensorsAcquire(sensorData, tick);
-    value_1 = (*sensorData).gyro.x * 10000;
+    sensorsAcquire(&sensorData, tick);
+    value_1 = 5000 * sensorData.gyro.x;
+
     motorsSetRatio(MOTOR_M1, value_1);
-    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
-    motorsSetRatio(MOTOR_M3, value_1);
     vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
     tick++;
   }
 }
 
+static void test_task2(void)
+{
+  uint16_t value_2;
+
+  uint32_t lastWakeTime;
+  sensorData_t sensorData;
+
+  lastWakeTime = xTaskGetTickCount();
+  while(!sensorsAreCalibrated()) {
+    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
+  }
+  
+  
+  while(1)
+  { 
+    sensorsAcquire(&sensorData, tick);
+    value_2 = 5000 * sensorData.gyro.x;
+
+    motorsSetRatio(MOTOR_M2, value_2);
+    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
+    tick++;
+  }
+}
+
+
+
+/*void comp_filter(state_t *state, sensorData_t *sensorData, const uint32_t tick)
+{
+    int gamma = 0.95;
+    int     h = 0.01;
+    float fx, fy, fz, ax, ay, az, theta, phi;
+
+    xSemaphoreTake(semMutex,1000);
+    sensorsAcquire(sensorData, tick); // Read sensors at full rate (1000Hz)
+
+    ax = (*sensorData).acc.ax;
+    ay = (*sensorData).acc.ay;
+    az = (*sensorData).acc.az;
+
+    if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
+    {
+        fx = ax*invSqrt(ax * ax + ay * ay + az * az);
+        fy = ax*invSqrt(ax * ax + ay * ay + az * az);
+        fz = az*invSqrt(ax * ax + ay * ay + az * az);
+
+        theta = (180/pi)*atan2(-fx,sqrt(fy*fy + fz*fz));
+        phi = (180/pi)*atan2(fy,fz);
+        (*state).attitude.roll = (1-gamma)*theta + gamma*((*state).attitude.roll + h*(*sensorData).gyro.y);
+        (*state).attitude.pitch = (1-gamma)*phi + gamma*((*state).attitude.pitch + h*(*sensorData).gyro.x);
+    }
+    xSemaphoreGive(semMutex);
+}*/
 
 /*************************************************
  * WAIT FOR SENSORS TO BE CALIBRATED
