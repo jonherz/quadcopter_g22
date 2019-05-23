@@ -69,7 +69,8 @@ your_code.o: src/modules/src/your_code.c \
  src/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_can.h \
  src/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dac.h \
  src/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dcmi.h \
- src/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_fsmc.h
+ src/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_fsmc.h \
+ src/lib/FreeRTOS/include/semphr.h src/lib/FreeRTOS/include/queue.h
 
 src/modules/interface/your_code.h:
 
@@ -238,3 +239,7 @@ src/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dac.h:
 src/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_dcmi.h:
 
 src/lib/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_fsmc.h:
+
+src/lib/FreeRTOS/include/semphr.h:
+
+src/lib/FreeRTOS/include/queue.h:

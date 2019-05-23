@@ -1,5 +1,7 @@
 #include "your_code.h"
+#include "semphr.h"
 
+#define MAX_uint16_t ((uint16_t)(65535U))
 /***
  *
  * This file is where you should add you tasks. You already know the structure
@@ -17,7 +19,7 @@
  *
  ***/
 
-static struct {
+volatile struct {
   // angles - degree
   float roll;
   float pitch;
@@ -28,11 +30,15 @@ static struct {
 } state;
 
 uint32_t tick;
+setpoint_t setpoint;
+
+SemaphoreHandle_t filtsema;
+SemaphoreHandle_t setsema;
 
 
-static void test_task1(void);
-static void test_task2(void);
 static void comp_filter(void);
+static void setPointtrack(void);
+static void controller(void);
 
 
 
@@ -41,147 +47,180 @@ void yourCodeInit(void)
   tick = 1;
   state.roll = 0.0f;
   state.pitch = 0.0f;
+  
+  filtsema = xSemaphoreCreateMutex();
+	setsema = xSemaphoreCreateMutex();
 
-  /*xTaskCreate(test_task1, "STABILIZER_TASK_NAME1",
-              (3 * configMINIMAL_STACK_SIZE), NULL, 1, NULL);
-  xTaskCreate(test_task2, "STABILIZER_TASK_NAME2",
-              (3 * configMINIMAL_STACK_SIZE), NULL, 2, NULL);*/
-   xTaskCreate(comp_filter, "STABILIZER_TASK_NAME3",
+  xTaskCreate(comp_filter, "FILTER",
               (3 * configMINIMAL_STACK_SIZE), NULL, 3, NULL);
-
-
-  //xTaskCreate(comp_filter, "comp_filter", configMINIMAL_STACK_SIZE, NULL, 1, NULL);  
-	//xTaskCreate(setpointgen, "setpointgen", configMINIMAL_STACK_SIZE, NULL, 3, NULL);  
-	//xTaskCreate(LQcontrol, "LQcontrol", configMINIMAL_STACK_SIZE, NULL, 2, NULL); 
+  xTaskCreate(setPointtrack, "SETPOINT",
+              (3 * configMINIMAL_STACK_SIZE), NULL, 1, NULL);
+  xTaskCreate(controller, "CONTROL",
+              (3 * configMINIMAL_STACK_SIZE), NULL, 2, NULL);
  }
 
 
 
 
 
-
-static void test_task1(void)
-{
-  uint16_t value_1;
-  uint32_t lastWakeTime;
-  sensorData_t sensorData;
-
-  lastWakeTime = xTaskGetTickCount();
-  while(!sensorsAreCalibrated()) {
-    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
-  }
-  
-  
-  while(1)
-  { 
-    sensorsAcquire(&sensorData, tick);
-    value_1 = 5000 * sensorData.gyro.x;
-
-    motorsSetRatio(MOTOR_M1, value_1);
-    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
-    tick++;
-  }
-}
-
-static void test_task2(void)
-{
-  uint16_t value_2;
-  uint32_t lastWakeTime;
-  sensorData_t sensorData;
-
-  lastWakeTime = xTaskGetTickCount();
-  while(!sensorsAreCalibrated()) {
-    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
-  }
-  
-  
-  while(1)
-  { 
-    sensorsAcquire(&sensorData, tick);
-    value_2 = 5000 * sensorData.gyro.x;
-
-    motorsSetRatio(MOTOR_M2, value_2);
-    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
-    tick++;
-  }
-}
-
-
-
-
-void comp_filter(void)
+static void comp_filter(void)
 {
   float gamma = 0.98;
   float     h = 0.001;
-  uint32_t lastWakeTime;
+  uint32_t lastWakeTime; 
   float fx, fy, fz, ax, ay, az, thetaNoobacc, phiNoobacc;
-  
+  sensorData_t sensorData;
 
   lastWakeTime = xTaskGetTickCount();
   while(!sensorsAreCalibrated()) {
-  vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
+    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
   }
-
-  sensorData_t sensorData;
-    
-    
+  
+  
   while(1)
-  {   
-  sensorsAcquire(&sensorData, tick); // Read sensors at full rate (1000Hz)
+  { 
+      vTaskDelayUntil(&lastWakeTime, F2T(1000));
+      sensorsAcquire(&sensorData, tick); // Read sensors at full rate (1000Hz)
 
-  ax = sensorData.acc.x;
-  ay = sensorData.acc.y;
-  az = sensorData.acc.z;
+      ax = sensorData.acc.x;
+      ay = sensorData.acc.y;
+      az = sensorData.acc.z;
 
-  //if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
-  //{
-    fx = ax/sqrt(ax * ax + ay * ay + az * az);
-    fy = ay/sqrt(ax * ax + ay * ay + az * az);
-    fz = az/sqrt(ax * ax + ay * ay + az * az);
+      if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
+      {
+        fx = ax/sqrt(ax * ax + ay * ay + az * az);
+        fy = ay/sqrt(ax * ax + ay * ay + az * az);
+        fz = az/sqrt(ax * ax + ay * ay + az * az);
 
-    thetaNoobacc = (180/M_PI)*atan2(-fx,sqrt(fy*fy + fz*fz));
-    phiNoobacc = (180/M_PI)*atan2(fy,fz);
-        
-             
-    state.pitch= (1-gamma)*thetaNoobacc + gamma*(state.pitch + h*sensorData.gyro.y);
-    state.roll= (1-gamma)*phiNoobacc + gamma*(state.roll  + h*sensorData.gyro.x);
-  //}
-  tick++;
+        thetaNoobacc = (180/M_PI)*atan2(-fx,sqrt(fy*fy + fz*fz));
+        phiNoobacc = (180/M_PI)*atan2(fy,fz);
+            
+      xSemaphoreTake(filtsema,portMAX_DELAY);          
+        state.pitch= (1-gamma)*thetaNoobacc + gamma*(state.pitch + h*sensorData.gyro.y);
+        state.roll= (1-gamma)*phiNoobacc + gamma*(state.roll  + h*sensorData.gyro.x);
+        state.rateRoll= sensorData.gyro.x;
+        state.ratePitch= sensorData.gyro.y;
+        state.rateYaw= sensorData.gyro.z;
+        tick++;
+      xSemaphoreGive(filtsema);
+    }
   }
 }
 
 
-
-
-
-
-
-/*void comp_filter(state_t *state, sensorData_t *sensorData, const uint32_t tick)
+static void setPointtrack(void)
 {
-    int gamma = 0.95;
-    int     h = 0.01;
-    float fx, fy, fz, ax, ay, az, theta, phi;
+  uint32_t lastWakeTime;
 
-    xSemaphoreTake(semMutex,1000);
-    sensorsAcquire(sensorData, tick); // Read sensors at full rate (1000Hz)
+  lastWakeTime = xTaskGetTickCount();
+  while(!sensorsAreCalibrated()) {
+    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
+  }
+  
+  
+  while(1)
+  { 
+    vTaskDelayUntil(&lastWakeTime, F2T(100));
+    xSemaphoreTake(setsema,portMAX_DELAY);          
+      commanderGetSetpoint(&setpoint, tick);
+      tick++;
+    xSemaphoreGive(setsema);
+    
+  }
+}
 
-    ax = (*sensorData).acc.ax;
-    ay = (*sensorData).acc.ay;
-    az = (*sensorData).acc.az;
+static void controller(void)
+{
+  uint32_t lastWakeTime;
+  float setTrackRoll, setTrackPitch, setTrackRollRate, setTrackPitchRate, setTrackYawRate;
+  uint16_t motor_1, motor_2, motor_3, motor_4;
+  float value_1,value_2,value_3,value_4;
 
-    if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
-    {
-        fx = ax*invSqrt(ax * ax + ay * ay + az * az);
-        fy = ax*invSqrt(ax * ax + ay * ay + az * az);
-        fz = az*invSqrt(ax * ax + ay * ay + az * az);
+  lastWakeTime = xTaskGetTickCount();
+  while(!sensorsAreCalibrated()) {
+    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
+  }
+  
+  float LQRGain[4][5] = {
+            {-135.2796, -135.3304,  -58.4204,  -59.2390,  -16.6338},
+            {-135.2796,  135.3304,  -58.4204,   59.2390,   16.6338},
+            {135.2796,  135.3304,   58.4204,   59.2390,  -16.6338},
+            {135.2796, -135.3304,   58.4204,  -59.2390,   16.6338},
+            };
+  
+  while(1)
+  { 
+    vTaskDelayUntil(&lastWakeTime, F2T(1000));
 
-        theta = (180/pi)*atan2(-fx,sqrt(fy*fy + fz*fz));
-        phi = (180/pi)*atan2(fy,fz);
-        (*state).attitude.roll = (1-gamma)*theta + gamma*((*state).attitude.roll + h*(*sensorData).gyro.y);
-        (*state).attitude.pitch = (1-gamma)*phi + gamma*((*state).attitude.pitch + h*(*sensorData).gyro.x);
+    xSemaphoreTake(setsema,portMAX_DELAY); 
+    xSemaphoreTake(filtsema,portMAX_DELAY);                   
+    setTrackRoll = (-1)*(state.roll - (-1)*setpoint.attitude.roll);
+    setTrackPitch = (-1)*(state.pitch - setpoint.attitude.pitch);
+    setTrackRollRate = (-1)*state.rateRoll;
+    setTrackPitchRate = (-1)*state.ratePitch;
+    setTrackYawRate = (-1)*state.rateYaw;
+    xSemaphoreGive(filtsema);
+
+
+    value_1 = 1*(setTrackRoll*LQRGain[0][0] + setTrackPitch*LQRGain[0][1] + setTrackRollRate*LQRGain[0][2] + setTrackPitchRate*LQRGain[0][3] + setTrackYawRate*LQRGain[0][4]);
+    value_2 = 1*(setTrackRoll*LQRGain[1][0] + setTrackPitch*LQRGain[1][1] + setTrackRollRate*LQRGain[1][2] + setTrackPitchRate*LQRGain[1][3] + setTrackYawRate*LQRGain[1][4]);
+    value_3 = 1*(setTrackRoll*LQRGain[2][0] + setTrackPitch*LQRGain[2][1] + setTrackRollRate*LQRGain[2][2] + setTrackPitchRate*LQRGain[2][3] + setTrackYawRate*LQRGain[2][4]);
+    value_4 = 1*(setTrackRoll*LQRGain[3][0] + setTrackPitch*LQRGain[3][1] + setTrackRollRate*LQRGain[3][2] + setTrackPitchRate*LQRGain[3][3] + setTrackYawRate*LQRGain[3][4]);
+
+    value_1 += setpoint.thrust;
+    value_2 += setpoint.thrust;
+    value_3 += setpoint.thrust;
+    value_4 += setpoint.thrust;
+    xSemaphoreGive(setsema);
+
+    if(value_1 < 65536.0){
+      if(value_1 >= 0.0){
+        motor_1 = (uint16_t)value_1;
+      } else{
+        motor_1 = 0U;
+      }
+    } else{
+      motor_1 = MAX_uint16_t;
     }
-    xSemaphoreGive(semMutex);
-}*/
+    if(value_2 < 65536.0){
+      if(value_2 >= 0.0){
+        motor_2 = (uint16_t)value_2;
+      } else{
+        motor_2 = 0U;
+      }
+    } else{
+      motor_2 = MAX_uint16_t;
+    }
+    if(value_3 < 65536.0){
+      if(value_3 >= 0.0){
+        motor_3 = (uint16_t)value_3;
+      } else{
+        motor_3 = 0U;
+      }
+    } else{
+      motor_3 = MAX_uint16_t;
+    }
+    if(value_4 < 65536.0){
+      if(value_4 >= 0.0){
+        motor_4 = (uint16_t)value_4;
+      } else{
+        motor_4 = 0U;
+      }
+    } else{
+      motor_4 = MAX_uint16_t;
+    }
+
+
+
+    motorsSetRatio(MOTOR_M1, motor_1);
+    motorsSetRatio(MOTOR_M2, motor_2);
+    motorsSetRatio(MOTOR_M3, motor_3);
+    motorsSetRatio(MOTOR_M4, motor_4);
+    tick++;
+  }
+}
+
+
 
 /*************************************************
  * WAIT FOR SENSORS TO BE CALIBRATED
