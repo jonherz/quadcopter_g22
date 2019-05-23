@@ -17,30 +17,48 @@
  *
  ***/
 
-static void test_task1(void);
-static void test_task2(void);
+static struct {
+  // angles - degree
+  float roll;
+  float pitch;
+  // angular velocity - degree / sec
+  int16_t rateRoll;
+  int16_t ratePitch;
+  int16_t rateYaw;
+} state;
 
 uint32_t tick;
 
 
+static void test_task1(void);
+static void test_task2(void);
+static void comp_filter(void);
+
+
+
 void yourCodeInit(void)
 {
-
   tick = 1;
+  state.roll = 0.0f;
+  state.pitch = 0.0f;
 
-  xTaskCreate(test_task1, "STABILIZER_TASK_NAME1",
+  /*xTaskCreate(test_task1, "STABILIZER_TASK_NAME1",
               (3 * configMINIMAL_STACK_SIZE), NULL, 1, NULL);
   xTaskCreate(test_task2, "STABILIZER_TASK_NAME2",
-              (3 * configMINIMAL_STACK_SIZE), NULL, 2, NULL);
-   xTaskCreate(test_task2, "STABILIZER_TASK_NAME2",
+              (3 * configMINIMAL_STACK_SIZE), NULL, 2, NULL);*/
+   xTaskCreate(comp_filter, "STABILIZER_TASK_NAME3",
               (3 * configMINIMAL_STACK_SIZE), NULL, 3, NULL);
 
 
   //xTaskCreate(comp_filter, "comp_filter", configMINIMAL_STACK_SIZE, NULL, 1, NULL);  
 	//xTaskCreate(setpointgen, "setpointgen", configMINIMAL_STACK_SIZE, NULL, 3, NULL);  
-	//xTaskCreate(LQcontrol, "LQcontrol", configMINIMAL_STACK_SIZE, NULL, 2, NULL);  
-
+	//xTaskCreate(LQcontrol, "LQcontrol", configMINIMAL_STACK_SIZE, NULL, 2, NULL); 
  }
+
+
+
+
+
 
 static void test_task1(void)
 {
@@ -93,46 +111,42 @@ static void test_task2(void)
 
 void comp_filter(void)
 {
-    int gamma = 0.95;
-    int     h = 0.01;
-    float fx, fy, fz, ax, ay, az, thetaNoob, phiNoob;
+  float gamma = 0.98;
+  float     h = 0.001;
+  uint32_t lastWakeTime;
+  float fx, fy, fz, ax, ay, az, thetaNoobacc, phiNoobacc;
+  
+
+  lastWakeTime = xTaskGetTickCount();
+  while(!sensorsAreCalibrated()) {
+  vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
+  }
+
+  sensorData_t sensorData;
     
-    int *thetaDank;
-    int *phiDank;
-
-    lastWakeTime = xTaskGetTickCount();
-    while(!sensorsAreCalibrated()) {
-    vTaskDelayUntil(&lastWakeTime, F2T(RATE_MAIN_LOOP));
-   }
-
-    sensorData_t sensorData;
     
-    
-    while(1){
-    sensorsAcquire(&sensorData, tick); // Read sensors at full rate (1000Hz)
+  while(1)
+  {   
+  sensorsAcquire(&sensorData, tick); // Read sensors at full rate (1000Hz)
 
-    ax = sensorData.acc.x;
-    ay = sensorData.acc.y;
-    az = sensorData.acc.z;
+  ax = sensorData.acc.x;
+  ay = sensorData.acc.y;
+  az = sensorData.acc.z;
 
-    if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
-    {
-        fx = ax*invSqrt(ax * ax + ay * ay + az * az);
-        fy = ax*invSqrt(ax * ax + ay * ay + az * az);
-        fz = az*invSqrt(ax * ax + ay * ay + az * az);
+  //if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
+  //{
+    fx = ax/sqrt(ax * ax + ay * ay + az * az);
+    fy = ay/sqrt(ax * ax + ay * ay + az * az);
+    fz = az/sqrt(ax * ax + ay * ay + az * az);
 
-        thetaNoob = (180/pi)*atan2(-fx,sqrt(fy*fy + fz*fz));
-        phiNoob = (180/pi)*atan2(fy,fz);
+    thetaNoobacc = (180/M_PI)*atan2(-fx,sqrt(fy*fy + fz*fz));
+    phiNoobacc = (180/M_PI)*atan2(fy,fz);
         
              
-        *thetaDank = (1-gamma)*thetaNoob + gamma*thetaNoob + h*sensorData.gyro.y);
-        *phiDank = (1-gamma)*phiNoob + gamma*phiNoob + h*sensorData.gyro.x);
-        // We need to return these values, maybe make thetaDank and phiDank into
-        // Pointers and then "&" to get them inside the controller. 
-        
-    }
-    
-    tick++;
+    state.pitch= (1-gamma)*thetaNoobacc + gamma*(state.pitch + h*sensorData.gyro.y);
+    state.roll= (1-gamma)*phiNoobacc + gamma*(state.roll  + h*sensorData.gyro.x);
+  //}
+  tick++;
   }
 }
 
@@ -258,6 +272,11 @@ void comp_filter(void)
  * them as reference if you want to add custom blocks.
  *
  ************************************************/
+
+LOG_GROUP_START(filter)
+LOG_ADD(LOG_FLOAT, roll, &state.roll)
+LOG_ADD(LOG_FLOAT, pitch, &state.pitch)
+LOG_GROUP_STOP(filter)
 
 /*
 LOG_GROUP_START(acc)
