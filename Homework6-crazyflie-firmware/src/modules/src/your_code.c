@@ -143,10 +143,10 @@ static void controller(void)
   }
   
   float LQRGain[4][5] = {
-            {-135.2796, -135.3304,  -58.4204,  -59.2390,  -16.6338},
-            {-135.2796,  135.3304,  -58.4204,   59.2390,   16.6338},
-            {135.2796,  135.3304,   58.4204,   59.2390,  -16.6338},
-            {135.2796, -135.3304,   58.4204,  -59.2390,   16.6338},
+            {-135.2796, -135.3304,  -58.4204,  -59.2390,  -50.6338},
+            {-135.2796,  135.3304,  -58.4204,   59.2390,   50.6338},
+            {135.2796,  135.3304,   58.4204,   59.2390,  -50.6338},
+            {135.2796, -135.3304,   58.4204,  -59.2390,   50.6338},
             };
   
   while(1)
@@ -159,7 +159,7 @@ static void controller(void)
     setTrackPitch = (-1)*(state.pitch - setpoint.attitude.pitch);
     setTrackRollRate = (-1)*state.rateRoll;
     setTrackPitchRate = (-1)*state.ratePitch;
-    setTrackYawRate = (-1)*state.rateYaw;
+    setTrackYawRate = (-1)*(state.rateYaw - setpoint.attitudeRate.yaw);
     xSemaphoreGive(filtsema);
 
 
