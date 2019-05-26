@@ -1,5 +1,5 @@
 % State vector = [a1 a2 v1 v2 v3 w1 w2 w3]
-clear all; clc;
+%clear all; clc;
 
 A = [ 0     0     1     0     0
      0     0     0     1     0
