@@ -24,9 +24,9 @@ volatile struct {
   float roll;
   float pitch;
   // angular velocity - degree / sec
-  int16_t rateRoll;
-  int16_t ratePitch;
-  int16_t rateYaw;
+  float rateRoll;
+  float ratePitch;
+  float rateYaw;
 } state;
 
 uint32_t tick;
@@ -34,6 +34,7 @@ setpoint_t setpoint;
 
 SemaphoreHandle_t filtsema;
 SemaphoreHandle_t setsema;
+
 
 
 static void comp_filter(void);
@@ -122,8 +123,8 @@ static void setPointtrack(void)
   { 
     vTaskDelayUntil(&lastWakeTime, F2T(100));
     xSemaphoreTake(setsema,portMAX_DELAY);          
-      commanderGetSetpoint(&setpoint, tick);
-      tick++;
+    commanderGetSetpoint(&setpoint, tick);
+    tick++;
     xSemaphoreGive(setsema);
     
   }
